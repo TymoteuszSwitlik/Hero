@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=4 uid="uid://c42p7fs6sx0j0"]
 
-[ext_resource type="PackedScene" uid="uid://cc64xwcm8hh6m" path="res://Player/Player.tscn" id="1_nrsy4"]
+[ext_resource type="PackedScene" uid="uid://xbexpme8hk16" path="res://Player/Player.tscn" id="1_nrsy4"]
 [ext_resource type="Texture2D" uid="uid://by6ln5d3pdia0" path="res://Asets/Solaria Demo Update 01.png" id="2_sts81"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eyvwm"]
@@ -389,9 +389,6 @@ sources/0 = SubResource("TileSetAtlasSource_eyvwm")
 [node name="Level1" type="Node2D"]
 metadata/_edit_horizontal_guides_ = [-63.0]
 
-[node name="Player" parent="." instance=ExtResource("1_nrsy4")]
-position = Vector2(0, -6)
-
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -408,3 +405,5 @@ tile_set = SubResource("TileSet_3iuja")
 use_parent_material = true
 tile_map_data = PackedByteArray("AAD8//z/AAALAAcAAAD9//z/AAALAAcAAAD+//z/AAALAAcAAAD///z/AAALAAcAAAAAAPz/AAALAAcAAAABAPz/AAALAAcAAAACAPz/AAALAAcAAAADAPz/AAALAAcAAAAEAPz/AAAMAAcAAAD7//z/AAAKAAcAAAAEAP3/AAAMAAgAAAAEAP7/AAAMAAgAAAAEAP//AAAMAAgAAAAEAAAAAAAMAAgAAAAEAAEAAAAMAAgAAAAEAAIAAAAMAAgAAAD7//3/AAAKAAgAAAD7//7/AAAKAAgAAAD7////AAAKAAgAAAD7/wAAAAAKAAgAAAD7/wEAAAAKAAgAAAD7/wIAAAAKAAgAAAD7/wMAAAAKAAkAAAD8/wMAAAALAAkAAAD9/wMAAAALAAkAAAD+/wMAAAALAAkAAAD//wMAAAALAAkAAAAAAAMAAAALAAkAAAABAAMAAAALAAkAAAACAAMAAAALAAkAAAADAAMAAAALAAkAAAAEAAMAAAAMAAkAAAA=")
 tile_set = SubResource("TileSet_3iuja")
+
+[node name="Player" parent="." instance=ExtResource("1_nrsy4")]
