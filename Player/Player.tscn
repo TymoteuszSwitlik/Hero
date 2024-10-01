@@ -1,83 +1,16 @@
-[gd_scene load_steps=30 format=3 uid="uid://xbexpme8hk16"]
+[gd_scene load_steps=17 format=3 uid="uid://xbexpme8hk16"]
 
-[ext_resource type="Script" path="res://Player/player.gd" id="1_hpxk8"]
+[ext_resource type="Script" path="res://Player/Scripts/player.gd" id="1_hpxk8"]
 [ext_resource type="Texture2D" uid="uid://8tbjl656siff" path="res://Player/Shadow.png" id="3_d1w3x"]
 [ext_resource type="Texture2D" uid="uid://bucn2peuj210j" path="res://Player/Sword.png" id="4_1n83b"]
 [ext_resource type="Texture2D" uid="uid://or6mj4hr65m4" path="res://Player/Hero.png" id="4_1phf6"]
+[ext_resource type="Script" path="res://Player/Scripts/PlayerMovement.gd" id="5_lw5p8"]
+[ext_resource type="Script" path="res://Player/Scripts/PlayerAnimation.gd" id="6_vksrd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dkanu"]
 size = Vector2(16, 14)
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cr1bk"]
-animation = &"IdleLeft"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_smiq0"]
-animation = &"IdleRight"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ch34n"]
-animation = &"IdleRight"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8ux01"]
-animation = &"IdleLeft"
-
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_ygtvs"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_cr1bk")
-blend_point_0/pos = Vector2(-1, 0)
-blend_point_1/node = SubResource("AnimationNodeAnimation_smiq0")
-blend_point_1/pos = Vector2(1, 0)
-blend_point_2/node = SubResource("AnimationNodeAnimation_ch34n")
-blend_point_2/pos = Vector2(0, -1.1)
-blend_point_3/node = SubResource("AnimationNodeAnimation_8ux01")
-blend_point_3/pos = Vector2(0, 1.1)
-min_space = Vector2(-1, -1.1)
-max_space = Vector2(1, 1.1)
-blend_mode = 1
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tjaw3"]
-animation = &"RunLeft"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jnawc"]
-animation = &"RunRight"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c2cjl"]
-animation = &"RunLeft"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_r47iw"]
-animation = &"RunRight"
-
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_nrcsd"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_tjaw3")
-blend_point_0/pos = Vector2(-1, 0)
-blend_point_1/node = SubResource("AnimationNodeAnimation_jnawc")
-blend_point_1/pos = Vector2(1, 0)
-blend_point_2/node = SubResource("AnimationNodeAnimation_c2cjl")
-blend_point_2/pos = Vector2(0, 1)
-blend_point_3/node = SubResource("AnimationNodeAnimation_r47iw")
-blend_point_3/pos = Vector2(0, -1)
-x_label = "y"
-blend_mode = 1
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_12yxr"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_h1hu7"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ov1pw"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ku734"]
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_qltfr"]
-states/End/position = Vector2(845, 106)
-states/Idle/node = SubResource("AnimationNodeBlendSpace2D_ygtvs")
-states/Idle/position = Vector2(401, 106)
-states/Run/node = SubResource("AnimationNodeBlendSpace2D_nrcsd")
-states/Run/position = Vector2(672, 106)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_12yxr"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_h1hu7"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_ov1pw"), "Run", "End", SubResource("AnimationNodeStateMachineTransition_ku734")]
-graph_offset = Vector2(-191, -123)
-
-[sub_resource type="Animation" id="Animation_iksat"]
-length = 0.8
-loop_mode = 1
+[sub_resource type="Animation" id="Animation_x8c0k"]
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -85,10 +18,10 @@ tracks/0/path = NodePath("Hero:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [1, 0, 2, 0]
+"values": [12, 12, 12, 12, 12, 12, 12, 12, 12]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -97,10 +30,10 @@ tracks/1/path = NodePath("Sword:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = false
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [1, 0, 1, 0]
+"values": [14, 15, 16, 17, 18, 19, 20, 21, 12]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -109,54 +42,13 @@ tracks/2/path = NodePath("Shadow:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = false
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [1, 0, 1, 0]
-}
-
-[sub_resource type="Animation" id="Animation_v30vv"]
-length = 1.2
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Hero:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = false
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [3, 4, 5, 6, 7, 0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sword:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = false
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 2, 2, 2, 0, 0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Shadow:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = false
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 0, 0, 0, 0, 0]
+"values": [4, 4, 5, 5, 5, 5, 5, 4, 4]
 }
 
 [sub_resource type="Animation" id="Animation_l15y1"]
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -194,9 +86,8 @@ tracks/2/keys = {
 "values": [0, 0, 2, 2, 2, 2, 2, 0, 0]
 }
 
-[sub_resource type="Animation" id="Animation_bqilh"]
-length = 0.8
-loop_mode = 1
+[sub_resource type="Animation" id="Animation_yjfv6"]
+length = 1.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -204,10 +95,10 @@ tracks/0/path = NodePath("Hero:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [8, 9, 10, 9]
+"values": [24, 25, 26, 27, 28, 29, 30, 31, 32]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -216,10 +107,10 @@ tracks/1/path = NodePath("Sword:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = false
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [11, 12, 11, 12]
+"values": [30, 31, 32, 33, 34, 35, 36, 37, 38]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -228,10 +119,49 @@ tracks/2/path = NodePath("Shadow:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = false
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [3, 4, 3, 4]
+"values": [14, 15, 16, 17, 18, 19, 20, 21, 22]
+}
+
+[sub_resource type="Animation" id="Animation_3cq3p"]
+length = 1.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hero:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 16, 17, 18, 19, 20, 21, 22, 23]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sword:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 22, 23, 24, 25, 26, 27, 28, 29]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Shadow:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = false
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 6, 7, 8, 9, 10, 11, 12, 13]
 }
 
 [sub_resource type="Animation" id="Animation_p87ip"]
@@ -274,7 +204,8 @@ tracks/2/keys = {
 "values": [4, 4, 4, 4, 4, 4]
 }
 
-[sub_resource type="Animation" id="Animation_x8c0k"]
+[sub_resource type="Animation" id="Animation_v30vv"]
+length = 1.2
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -283,10 +214,10 @@ tracks/0/path = NodePath("Hero:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [12, 12, 12, 12, 12, 12, 12, 12, 12]
+"values": [3, 4, 5, 6, 7, 0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -295,10 +226,10 @@ tracks/1/path = NodePath("Sword:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = false
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [14, 15, 16, 17, 18, 19, 20, 21, 12]
+"values": [0, 2, 2, 2, 0, 0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -307,14 +238,14 @@ tracks/2/path = NodePath("Shadow:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = false
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [4, 4, 5, 5, 5, 5, 5, 4, 4]
+"values": [0, 0, 0, 0, 0, 0]
 }
 
-[sub_resource type="Animation" id="Animation_3cq3p"]
-length = 1.1
+[sub_resource type="Animation" id="Animation_bqilh"]
+length = 0.8
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -323,10 +254,10 @@ tracks/0/path = NodePath("Hero:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [0, 16, 17, 18, 19, 20, 21, 22, 23]
+"values": [8, 9, 10, 9]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -335,10 +266,10 @@ tracks/1/path = NodePath("Sword:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = false
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [0, 22, 23, 24, 25, 26, 27, 28, 29]
+"values": [11, 12, 11, 12]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -347,14 +278,14 @@ tracks/2/path = NodePath("Shadow:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = false
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [0, 6, 7, 8, 9, 10, 11, 12, 13]
+"values": [3, 4, 3, 4]
 }
 
-[sub_resource type="Animation" id="Animation_yjfv6"]
-length = 1.1
+[sub_resource type="Animation" id="Animation_iksat"]
+length = 0.8
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -363,10 +294,10 @@ tracks/0/path = NodePath("Hero:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [24, 25, 26, 27, 28, 29, 30, 31, 32]
+"values": [1, 0, 2, 0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -375,10 +306,10 @@ tracks/1/path = NodePath("Sword:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = false
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [30, 31, 32, 33, 34, 35, 36, 37, 38]
+"values": [1, 0, 1, 0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -387,10 +318,10 @@ tracks/2/path = NodePath("Shadow:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = false
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [14, 15, 16, 17, 18, 19, 20, 21, 22]
+"values": [1, 0, 1, 0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_b0mws"]
@@ -417,6 +348,7 @@ position = Vector2(8, -1)
 texture = ExtResource("4_1phf6")
 hframes = 6
 vframes = 6
+frame = 12
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,
 "keep_anim_length": false,
@@ -441,6 +373,7 @@ position = Vector2(8, -1)
 texture = ExtResource("4_1n83b")
 hframes = 7
 vframes = 6
+frame = 14
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,
 "keep_anim_length": false,
@@ -466,6 +399,7 @@ position = Vector2(8, -1)
 texture = ExtResource("3_d1w3x")
 hframes = 5
 vframes = 5
+frame = 4
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,
 "keep_anim_length": false,
@@ -484,13 +418,14 @@ metadata/_aseprite_wizard_interface_config_ = {
 }
 metadata/_aseprite_wizard_source_file_hash_ = "04243307d3f91580ad60557335ff086b"
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource("AnimationNodeStateMachine_qltfr")
-anim_player = NodePath("../AnimationPlayer")
-parameters/Idle/blend_position = Vector2(0.0611929, 0.525664)
-parameters/Run/blend_position = Vector2(0.0193648, -0.955752)
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_b0mws")
 }
+
+[node name="PlayerMovement" type="Node2D" parent="."]
+script = ExtResource("5_lw5p8")
+
+[node name="PlayerAnimation" type="Node2D" parent="." node_paths=PackedStringArray("animation_player")]
+script = ExtResource("6_vksrd")
+animation_player = NodePath("../AnimationPlayer")
