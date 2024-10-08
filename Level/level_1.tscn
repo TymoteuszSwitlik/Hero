@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=4 uid="uid://c42p7fs6sx0j0"]
+[gd_scene load_steps=6 format=4 uid="uid://c42p7fs6sx0j0"]
 
 [ext_resource type="PackedScene" uid="uid://xbexpme8hk16" path="res://Player/Player.tscn" id="1_nrsy4"]
 [ext_resource type="Texture2D" uid="uid://by6ln5d3pdia0" path="res://Asets/Solaria Demo Update 01.png" id="2_sts81"]
+[ext_resource type="PackedScene" uid="uid://cr4fil4jm5101" path="res://Enemies/slime.tscn" id="3_m0kcq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eyvwm"]
 texture = ExtResource("2_sts81")
@@ -407,3 +408,9 @@ tile_map_data = PackedByteArray("AAD8//z/AAALAAcAAAD9//z/AAALAAcAAAD+//z/AAALAAc
 tile_set = SubResource("TileSet_3iuja")
 
 [node name="Player" parent="." instance=ExtResource("1_nrsy4")]
+
+[node name="Slime" parent="." instance=ExtResource("3_m0kcq")]
+position = Vector2(-24, 3)
+
+[node name="Slime2" parent="." instance=ExtResource("3_m0kcq")]
+position = Vector2(-23, -44)

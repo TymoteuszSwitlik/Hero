@@ -107,9 +107,11 @@ func get_input():
 			is_attacking = true
 		elif Input.is_action_just_pressed("dodge"):
 			if direction == Directions.RIGHT:
+				#player.velocity.x = 20
 				set_hero_state(HeroState.DODGERIGHT)
 				set_sword_state(SwordState.DODGERIGHT)
 			else:
+				#player.velocity.x = -20
 				set_hero_state(HeroState.DODGELEFT)
 				set_sword_state(SwordState.DODGELEFT)
 			is_dodging = true
