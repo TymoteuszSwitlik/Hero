@@ -410,4 +410,5 @@ tile_set = SubResource("TileSet_3iuja")
 [node name="Player" parent="." instance=ExtResource("1_nrsy4")]
 
 [node name="Slime" parent="." instance=ExtResource("3_m0kcq")]
-position = Vector2(46, -32)
+visible = true
+position = Vector2(29, -30)

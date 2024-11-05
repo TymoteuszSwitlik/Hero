@@ -5,168 +5,245 @@ extends Node
 
 @onready var player : CharacterBody2D = get_owner()
 
-enum Directions {LEFT, RIGHT}
-#enum HeroState {IDLERIGHT, IDLELEFT, RUNRIGHT, RUNLEFT, ATTACKRIGHT, ATTACKLEFT, DODGERIGHT, DODGELEFT}
-enum HeroState {INITIAL, IDLERIGHT, IDLELEFT, RUNRIGHT, RUNLEFT, DODGERIGHT, DODGELEFT,}
-enum SwordState {INITIAL, IDLERIGHT, IDLELEFT, RUNRIGHT, RUNLEFT, ATTACKRIGHT, ATTACKLEFT, DODGERIGHT, DODGELEFT}
+enum Directions {LEFT, RIGHT, UP, DOWN}
+enum State {INITIAL, IDLE, RUN, ATTACK, RECOVERY, ATTACK2, RECOVERY2, ATTACK3, DODGE}
 	
-var direction = Directions.RIGHT
-var current_player_state = HeroState.INITIAL
-var current_sword_state = SwordState.INITIAL
+var direction = Directions.DOWN
+var current_state = State.INITIAL
 var velocity = Vector2.ZERO
 var is_attacking = false
 var is_dodging = false
-#var play_attack = true
-#var play_dodge = true
 
+
+
+func _ready():
+	disable_loops()
+
+func disable_loops():
+	var anim_names_hero = animation_player_hero.get_animation_list()
+	var anim_names_sword = animation_player_sword.get_animation_list()  
+	
+	for anim_name in anim_names_hero:
+		if "Attack" in anim_name or "Dodge" in anim_name or "Recovery" in anim_name:
+			animation_player_hero.get_animation(anim_name).loop_mode = 0
+		
+	
+	for anim_name in anim_names_sword:
+		if "Attack" in anim_name or "Dodge" in anim_name or "Recovery" in anim_name:
+			animation_player_sword.get_animation(anim_name).loop_mode = 0
+
+
+func play_idle():
+	if direction == Directions.RIGHT:
+		animation_player_hero.play("IdleRight")
+		animation_player_sword.play("IdleRight")
+	elif direction == Directions.LEFT:
+		animation_player_hero.play("IdleLeft")
+		animation_player_sword.play("IdleLeft")
+	elif direction == Directions.UP:
+		animation_player_hero.play("IdleUp")
+		animation_player_sword.play("IdleUp")
+	else:
+		animation_player_hero.play("IdleDown")
+		animation_player_sword.play("IdleDown")
+
+
+func play_run():
+	if direction == Directions.RIGHT:
+		animation_player_hero.play("RunRight")
+		animation_player_sword.play("RunRight")
+	elif direction == Directions.LEFT:
+		animation_player_hero.play("RunLeft")
+		animation_player_sword.play("RunLeft")
+	elif direction == Directions.UP:
+		animation_player_hero.play("RunUp")
+		animation_player_sword.play("RunUp")
+	else:
+		animation_player_hero.play("RunDown")
+		animation_player_sword.play("RunDown")
+
+
+func play_attack():
+	if direction == Directions.RIGHT:
+		animation_player_hero.play("AttackRight")
+		animation_player_sword.play("AttackRight")
+	elif direction == Directions.LEFT:
+		animation_player_hero.play("AttackLeft")
+		animation_player_sword.play("AttackLeft")
+	elif direction == Directions.UP:
+		animation_player_hero.play("AttackUp")
+		animation_player_sword.play("AttackUp")
+	else:
+		animation_player_hero.play("AttackDown")
+		animation_player_sword.play("AttackDown")
+
+
+func play_attack_2():
+	if direction == Directions.RIGHT:
+		animation_player_hero.play("AttackRight2")
+		animation_player_sword.play("AttackRight2")
+	elif direction == Directions.LEFT:
+		animation_player_hero.play("AttackLeft2")
+		animation_player_sword.play("AttackLeft2")
+	elif direction == Directions.UP:
+		animation_player_hero.play("AttackUp2")
+		animation_player_sword.play("AttackUp2")
+	else:
+		animation_player_hero.play("AttackDown2")
+		animation_player_sword.play("AttackDown2")
+		
+		
+func play_attack_3():
+	if direction == Directions.RIGHT:
+		animation_player_hero.play("AttackRight3")
+		animation_player_sword.play("AttackRight3")
+	elif direction == Directions.LEFT:
+		animation_player_hero.play("AttackLeft3")
+		animation_player_sword.play("AttackLeft3")
+	elif direction == Directions.UP:
+		animation_player_hero.play("AttackUp3")
+		animation_player_sword.play("AttackUp3")
+	else:
+		animation_player_hero.play("AttackDown3")
+		animation_player_sword.play("AttackDown3")
+		
+		
+func play_recovery():
+	if direction == Directions.RIGHT:
+		animation_player_hero.play("RecoveryRight")
+		animation_player_sword.play("RecoveryRight")
+	elif direction == Directions.LEFT:
+		animation_player_hero.play("RecoveryLeft")
+		animation_player_sword.play("RecoveryLeft")
+	elif direction == Directions.UP:
+		animation_player_hero.play("RecoveryUp")
+		animation_player_sword.play("RecoveryUp")
+	else:
+		animation_player_hero.play("RecoveryDown")
+		animation_player_sword.play("RecoveryDown")
+	
+
+
+func play_recovery2():
+	if direction == Directions.RIGHT:
+		animation_player_hero.play("RecoveryRight2")
+		animation_player_sword.play("RecoveryRight2")
+	elif direction == Directions.LEFT:
+		animation_player_hero.play("RecoveryLeft2")
+		animation_player_sword.play("RecoveryLeft2")
+	elif direction == Directions.UP:
+		animation_player_hero.play("RecoveryUp2")
+		animation_player_sword.play("RecoveryUp2")
+	else:
+		animation_player_hero.play("RecoveryDown2")
+		animation_player_sword.play("RecoveryDown2")	
+	
+	
+func play_dodge():
+	if direction == Directions.RIGHT:
+		animation_player_hero.play("DodgeRight")
+		animation_player_sword.play("DodgeRight")
+	elif direction == Directions.LEFT:
+		animation_player_hero.play("DodgeLeft")
+		animation_player_sword.play("DodgeLeft")
+	elif direction == Directions.UP:
+		animation_player_hero.play("DodgeUp")
+		animation_player_sword.play("DodgeUp")
+	else:
+		animation_player_hero.play("DodgeDown")
+		animation_player_sword.play("DodgeDown")
+		
 
 func get_direction():
 	if velocity.x > 0:
 		direction = Directions.RIGHT
 	elif velocity.x < 0:
 		direction = Directions.LEFT
+	elif velocity.y < 0:
+		direction = Directions.UP
+	elif velocity.y > 0:
+		direction = Directions.DOWN
 	else:
 		pass
-		
-		
-func set_hero_state(new_state):
-	if current_player_state != new_state :
-		current_player_state = new_state
-		handle_hero_animation()
-		
-func set_sword_state(new_state):
-	if current_sword_state != new_state :
-		current_sword_state = new_state
-		handle_sword_animation()
 
+		
+func set_state(new_state):
+	if current_state != new_state:
+		current_state = new_state
+		#handle_animation()
+		
 
-func handle_hero_animation():
-	match current_player_state:
-		HeroState.IDLERIGHT:
-				animation_player_hero.play("IdleRight")
-				#animation_player_sword.play("IdleRight")
-		HeroState.IDLELEFT:
-				animation_player_hero.play("IdleLeft")
-				#animation_player_sword.play("IdleLeft")
-		HeroState.RUNRIGHT:
-				animation_player_hero.play("RunRight")
-				#animation_player_sword.play("RunRight")
-		HeroState.RUNLEFT:
-				animation_player_hero.play("RunLeft")
-				#animation_player_sword.play("RunLeft")
-		#HeroState.ATTACKRIGHT:
-				#animation_player_sword.play("AttackRight")
-				#play = false
-		#HeroState.ATTACKLEFT:
-				#animation_player_sword.play("AttackLeft")
-				#print(direction)
-				#play = false
-		HeroState.DODGERIGHT:
-				animation_player_hero.play("DodgeRight")
-				#animation_player_sword.play("DodgeRight")
-				#play = false
-		HeroState.DODGELEFT:
-				animation_player_hero.play("DodgeLeft")
-				#animation_player_sword.play("DodgeLeft")				
-				#play = false
+func handle_animation():
+	
+	match current_state:
+		State.IDLE:
+			play_idle()
+		State.RUN:
+			play_run()
+		State.DODGE:
+			play_dodge()
+		State.ATTACK:
+			play_attack()
+		State.RECOVERY:
+			play_recovery()
+			if Input.is_action_just_pressed("attack"):
+				set_state(State.ATTACK2)
+		State.ATTACK2:
+			play_attack_2()
+		State.RECOVERY2:
+			play_recovery2()
+			if Input.is_action_just_pressed("attack"):
+				set_state(State.ATTACK3)
+		State.ATTACK3:
+			play_attack_3()
+
+	#if is_attacking:
+		#handle_attack()
+
+#func handle_attack():
+		
 				
-func handle_sword_animation():
-	match current_sword_state:
-		SwordState.IDLERIGHT:
-				animation_player_sword.play("IdleRight")
-		SwordState.IDLELEFT:
-				animation_player_sword.play("IdleLeft")
-		SwordState.RUNRIGHT:
-				animation_player_sword.play("RunRight")
-		SwordState.RUNLEFT:
-				animation_player_sword.play("RunLeft")
-		SwordState.ATTACKRIGHT:
-				animation_player_sword.play("AttackRight")
-				#play = false
-		SwordState.ATTACKLEFT:
-				animation_player_sword.play("AttackLeft")
-				#play = false
-		SwordState.DODGERIGHT:
-				animation_player_sword.play("DodgeRight")
-				#play = false
-		SwordState.DODGELEFT:
-				animation_player_sword.play("DodgeLeft")				
-				#play = false
-
 				
 func get_input():
 	velocity = player.velocity
+	
 	get_direction()	
 	
 	if is_dodging == false:	
-		if Input.is_action_just_pressed("attack"):
-			if direction == Directions.RIGHT:
-				set_sword_state(SwordState.ATTACKRIGHT)	
+		if is_attacking == false:
+			if Input.is_action_just_pressed("attack"):
+				is_attacking = true
+				set_state(State.ATTACK)	
+			elif Input.is_action_just_pressed("dodge"):
+				is_dodging = true
+				set_state(State.DODGE)
+			elif velocity.length() > 0:
+				set_state(State.RUN)
 			else:
-				set_sword_state(SwordState.ATTACKLEFT)	
-			is_attacking = true
-		elif Input.is_action_just_pressed("dodge"):
-			if direction == Directions.RIGHT:
-				#player.velocity.x = 20
-				set_hero_state(HeroState.DODGERIGHT)
-				set_sword_state(SwordState.DODGERIGHT)
-			else:
-				#player.velocity.x = -20
-				set_hero_state(HeroState.DODGELEFT)
-				set_sword_state(SwordState.DODGELEFT)
-			is_dodging = true
-		elif velocity.length() > 0:
-			if direction == Directions.RIGHT:
-				set_hero_state(HeroState.RUNRIGHT)
-				if is_attacking == false:
-					set_sword_state(SwordState.RUNRIGHT)
-				
-			else:
-				set_hero_state(HeroState.RUNLEFT)
-				if is_attacking == false:
-					set_sword_state(SwordState.RUNLEFT)
-				
-		else:
-			if direction == Directions.RIGHT:
-				set_hero_state(HeroState.IDLERIGHT)
-				if is_attacking == false:
-					set_sword_state(SwordState.IDLERIGHT)
-			else:
-				set_hero_state(HeroState.IDLELEFT)
-				if is_attacking == false:
-					set_sword_state(SwordState.IDLELEFT)
-				
-
-#func reset_animation():
-	#if is_attacking:
-		#if direction == Directions.RIGHT:
-			#set_hero_state(HeroState.RUNRIGHT if velocity.length() > 0 else HeroState.IDLERIGHT)
-		#else:
-			#set_hero_state(HeroState.RUNLEFT if velocity.length() > 0 else HeroState.IDLELEFT)
-		#is_attacking = false
-	#
-	#if is_dodging:
-		#if direction == Directions.RIGHT:
-			#set_hero_state(HeroState.RUNRIGHT if velocity.length() > 0 else HeroState.IDLERIGHT)
-		#else:
-			#set_hero_state(HeroState.RUNLEFT if velocity.length() > 0 else HeroState.IDLELEFT)
-		#is_dodging = false
+				set_state(State.IDLE)
 		
+	handle_animation()
+			
 			
 func _physics_process(delta):
-	#if play:
 	get_input()
-	#reset_animation()
 		
 
-func _on_animation_player_sword_animation_started(anim_name):
-	pass
-	
 func _on_animation_player_sword_animation_finished(anim_name):
-	is_attacking = false
-	is_dodging = false
+	match current_state:
+		State.ATTACK:
+			set_state(State.RECOVERY)
+		State.RECOVERY:
+			is_attacking = false
+		State.ATTACK2:
+			set_state(State.RECOVERY2)	
+		State.RECOVERY2:
+			is_attacking = false	
+		State.ATTACK3:
+			is_attacking = false
+		State.DODGE:
+			is_dodging = false
+	pass
 
 
-
-
-#ZABLOKOWAC KIERUNEK PRZY FILKFLAKACH
+##zmiana blokowania ruchu w kombosach. W trakcie 1 ataku w miejscu, recovery w miejscu, atak2 krok, recovery2 w miejscu, atak 3 krok
