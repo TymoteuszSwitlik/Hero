@@ -19,20 +19,102 @@ var is_dodging = false
 func _ready():
 	disable_loops()
 
+
+func _physics_process(delta):
+	get_input()
+
+
 func disable_loops():
 	var anim_names_hero = animation_player_hero.get_animation_list()
 	var anim_names_sword = animation_player_sword.get_animation_list()  
 	
 	for anim_name in anim_names_hero:
-		if "Attack" in anim_name or "Dodge" in anim_name or "Recovery" in anim_name:
+		if "Attack" in anim_name or "Dodge" in anim_name or "Recovery" in anim_name or "Hurt" in anim_name or "Dying" in anim_name:
 			animation_player_hero.get_animation(anim_name).loop_mode = 0
 		
 	
 	for anim_name in anim_names_sword:
-		if "Attack" in anim_name or "Dodge" in anim_name or "Recovery" in anim_name:
+		if "Attack" in anim_name or "Dodge" in anim_name or "Recovery" in anim_name or "Hurt" in anim_name or "Dying" in anim_name:
 			animation_player_sword.get_animation(anim_name).loop_mode = 0
+		
 
 
+func get_direction():
+	if velocity.x > 0:
+		direction = Directions.RIGHT
+	elif velocity.x < 0:
+		direction = Directions.LEFT
+	elif velocity.y < 0:
+		direction = Directions.UP
+	elif velocity.y > 0:
+		direction = Directions.DOWN
+	else:
+		pass
+
+
+func get_input():
+	velocity = player.velocity
+	
+	get_direction()	
+	
+	if is_dodging == false:	
+		if is_attacking == false:
+			if Input.is_action_just_pressed("attack"):
+				is_attacking = true
+				set_state(State.ATTACK)	
+			elif Input.is_action_just_pressed("dodge"):
+				is_dodging = true
+				set_state(State.DODGE)
+			elif velocity.length() > 0:
+				set_state(State.RUN)
+			else:
+				set_state(State.IDLE)
+		
+	handle_animation()		
+	
+	
+func set_state(new_state):
+	if current_state != new_state:
+		current_state = new_state
+		#handle_animation()
+		
+
+func handle_animation():
+	
+	match current_state:
+		State.IDLE:
+			play_idle()
+		State.RUN:
+			play_run()
+		State.DODGE:
+			play_dodge()
+		State.ATTACK:
+			play_attack()
+		State.RECOVERY:
+			play_recovery()
+			if Input.is_action_just_pressed("attack"):
+				set_state(State.ATTACK2)
+			if Input.is_action_just_pressed("dodge"):
+				is_dodging = true
+				set_state(State.DODGE)	
+		State.ATTACK2:
+			play_attack_2()
+		State.RECOVERY2:
+			play_recovery2()
+			if Input.is_action_just_pressed("attack"):
+				set_state(State.ATTACK3)
+			if Input.is_action_just_pressed("dodge"):
+				is_dodging = true
+				set_state(State.DODGE)	
+		State.ATTACK3:
+			play_attack_3()
+
+	#if is_attacking:
+		#handle_attack()
+
+#func handle_attack():
+		
+			
 func play_idle():
 	if direction == Directions.RIGHT:
 		animation_player_hero.play("IdleRight")
@@ -154,95 +236,23 @@ func play_dodge():
 		animation_player_sword.play("DodgeDown")
 		
 
-func get_direction():
-	if velocity.x > 0:
-		direction = Directions.RIGHT
-	elif velocity.x < 0:
-		direction = Directions.LEFT
-	elif velocity.y < 0:
-		direction = Directions.UP
-	elif velocity.y > 0:
-		direction = Directions.DOWN
-	else:
-		pass
-
-		
-func set_state(new_state):
-	if current_state != new_state:
-		current_state = new_state
-		#handle_animation()
-		
-
-func handle_animation():
-	
-	match current_state:
-		State.IDLE:
-			play_idle()
-		State.RUN:
-			play_run()
-		State.DODGE:
-			play_dodge()
-		State.ATTACK:
-			play_attack()
-		State.RECOVERY:
-			play_recovery()
-			if Input.is_action_just_pressed("attack"):
-				set_state(State.ATTACK2)
-		State.ATTACK2:
-			play_attack_2()
-		State.RECOVERY2:
-			play_recovery2()
-			if Input.is_action_just_pressed("attack"):
-				set_state(State.ATTACK3)
-		State.ATTACK3:
-			play_attack_3()
-
-	#if is_attacking:
-		#handle_attack()
-
-#func handle_attack():
-		
-				
-				
-func get_input():
-	velocity = player.velocity
-	
-	get_direction()	
-	
-	if is_dodging == false:	
-		if is_attacking == false:
-			if Input.is_action_just_pressed("attack"):
-				is_attacking = true
-				set_state(State.ATTACK)	
-			elif Input.is_action_just_pressed("dodge"):
-				is_dodging = true
-				set_state(State.DODGE)
-			elif velocity.length() > 0:
-				set_state(State.RUN)
-			else:
-				set_state(State.IDLE)
-		
-	handle_animation()
-			
-			
-func _physics_process(delta):
-	get_input()
-		
-
 func _on_animation_player_sword_animation_finished(anim_name):
 	match current_state:
 		State.ATTACK:
-			set_state(State.RECOVERY)
-		State.RECOVERY:
 			is_attacking = false
-		State.ATTACK2:
-			set_state(State.RECOVERY2)	
-		State.RECOVERY2:
-			is_attacking = false	
-		State.ATTACK3:
-			is_attacking = false
+			## zablokowałem combo atakow
+				#set_state(State.RECOVERY)
+			#State.RECOVERY:
+				#is_attacking = false
+			#State.ATTACK2:
+				#set_state(State.RECOVERY2)	
+			#State.RECOVERY2:
+				#is_attacking = false	
+			#State.ATTACK3:
+				#is_attacking = false
 		State.DODGE:
 			is_dodging = false
+			is_attacking = false
 	pass
 
 

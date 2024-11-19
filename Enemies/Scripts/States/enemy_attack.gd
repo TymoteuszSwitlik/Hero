@@ -1,53 +1,60 @@
 extends EnemyState
 
-signal attack_start	
-signal attack_end	
+var current_player_position = Vector2.ZERO
+var attack_prepare_timer: Timer
+var attack_action_timer: Timer
+var cnt = 0
+var attack_speed = null
 
-@export var attack_speed: = 50.0
 
-var attack_start_timer: Timer
-var attack_end_timer: Timer
-var action_trigger = false
+func process_state(delta):
+	anim.play_attack()
+	
+func physics_process_state(delta):
+	enemy.move_and_slide()
 
 func enter():
-	enemy.velocity = Vector2.ZERO
+	anim.attack_direction_unlock() # zeruje warunki pobierania kierunku w celu zablokowania kierunku animacji 
+	attack_speed = enemy.attack_speed
+	current_player_position = player.global_position
 	
-	attack_start_timer = Timer.new()
-	attack_start_timer.wait_time = randi_range(2, 4)
-	attack_start_timer.timeout.connect(on_attack_start)
-	attack_start_timer.autostart = true
-	add_child(attack_start_timer)
+	draw.draw_current_position(current_player_position) ## debug ##
+	
+	clear_timers()
+	attack_prepare_timer = Timer.new()
+	attack_prepare_timer.one_shot = true
+	attack_prepare_timer.wait_time = 0.4
+	attack_prepare_timer.timeout.connect(on_prepare_timeout)
+	attack_prepare_timer.autostart = true
+	add_child(attack_prepare_timer)
+		
 
-	attack_end_timer = Timer.new()
-	attack_end_timer.wait_time = 0.5
-	attack_end_timer.timeout.connect(on_attack_end)
-	add_child(attack_end_timer)
-
-func on_attack_start():
-	attack_end_timer.start()
-	enemy.velocity = (player.global_position - enemy.global_position).normalized() * attack_speed
+func on_prepare_timeout():
+	attack_action_timer = Timer.new()
+	attack_action_timer.one_shot = true
+	attack_action_timer.wait_time = 0.5
+	attack_action_timer.timeout.connect(on_action_timeout)
+	attack_action_timer.autostart = true
+	add_child(attack_action_timer)
 	
-	attack_start_timer.stop()
+	enemy.velocity = (current_player_position - enemy.global_position).normalized() * attack_speed
 	
-func on_attack_end():
-	attack_end.emit()
+func on_action_timeout():
 	enemy.velocity = Vector2.ZERO
-	
-	attack_end_timer.stop()
-	
-	transitioned.emit(self, "chase")
-	
-func process_state(delta: float):
-	if attack_start_timer.time_left >= 0.40 and attack_start_timer.time_left <= 0.5 and !action_trigger:
-		attack_start.emit()
-		
-		action_trigger = true
-		
-	if attack_start_timer.time_left <= 0:
-		action_trigger = false
-		
-	
-func physics_process_state(delta: float):
-		
-	enemy.move_and_slide()
-	
+	transitioned.emit(self, "recovery")
+
+func exit():
+	clear_timers()
+	draw.erease()  ## debug ##
+
+func clear_timers():
+	if attack_prepare_timer:
+		attack_prepare_timer.timeout.disconnect(on_prepare_timeout)
+		attack_prepare_timer.stop()
+		attack_prepare_timer.queue_free()
+		attack_prepare_timer = null
+	if attack_action_timer:
+		attack_action_timer.timeout.disconnect(on_action_timeout)
+		attack_action_timer.stop()
+		attack_action_timer.queue_free()
+		attack_action_timer = null

@@ -1,21 +1,18 @@
 extends EnemyState
 
-
 var timer : Timer
 var pushed_timer : Timer
 var current_player_position = Vector2.ZERO
 var pushed_force = null
 
 
-func process_state(delta):
-	anim.play_hurt()
-	
-	
 func physics_process_state(delta):
 	enemy.move_and_slide()
 	
-	
 func enter():
+	anim.play_death()
+	#enemy.alive = false
+	
 	timer = Timer.new()
 	timer.one_shot = true
 	timer.wait_time = 0.8
@@ -29,7 +26,7 @@ func enter():
 	pushed_timer.autostart = true
 	pushed_timer.timeout.connect(on_pushed_timer_finished)
 	add_child(pushed_timer)
-	
+
 	pushed()
 
 
@@ -40,20 +37,26 @@ func pushed():
 
 
 func on_timer_finished():
-	transitioned.emit(self, "wander")
-
-func on_pushed_timer_finished():
-	enemy.velocity = Vector2.ZERO
-
-
-
-func exit():
 	timer.timeout.disconnect(on_timer_finished)
 	timer.stop()
 	timer.queue_free()
 	timer = null
 	
+func on_pushed_timer_finished():	
 	pushed_timer.timeout.disconnect(on_pushed_timer_finished)
 	pushed_timer.stop()
 	pushed_timer.queue_free()
 	pushed_timer = null
+	enemy.velocity = Vector2.ZERO
+
+
+
+	if sprite_1:
+		var tween_1 = create_tween()
+		var tween_2 = create_tween()
+		
+		tween_1.tween_property(sprite_1, "modulate:a", 0, 3)
+		tween_2.tween_property(sprite_2, "modulate:a", 0, 3)
+		
+		tween_1.tween_callback(enemy.queue_free)
+		
