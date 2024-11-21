@@ -10,13 +10,16 @@ func enter():
 	enemy.velocity = Vector2.ZERO
 	
 	prepare_timer = Timer.new()
-	prepare_timer.wait_time = 1 #1
+	prepare_timer.wait_time = randi_range(0.5, 2) #1
 	prepare_timer.timeout.connect(on_timeout)
 	prepare_timer.autostart = true
 	add_child(prepare_timer)
 	
 func on_timeout():
-	transitioned.emit(self, "attack")
+	if !obstacle_detect.see_player:
+		transitioned.emit(self, "recovery")
+	else:
+		transitioned.emit(self, "attack")
 	
 func exit():
 	prepare_timer.timeout.disconnect(on_timeout)

@@ -1,9 +1,12 @@
+class_name PlayerAnimation
 extends Node
 
-@export var animation_player_hero : AnimationPlayer
-@export var animation_player_sword : AnimationPlayer
+#@export var animation_player_hero : AnimationPlayer
+#@export var animation_player_sword : AnimationPlayer
 
-@onready var player : CharacterBody2D = get_owner()
+@onready var player : Player = get_owner()
+@onready var animation_player_hero = $"../AnimationPlayerHero"
+@onready var animation_player_sword = $"../AnimationPlayerSword"
 
 enum Directions {LEFT, RIGHT, UP, DOWN}
 enum State {INITIAL, IDLE, RUN, ATTACK, RECOVERY, ATTACK2, RECOVERY2, ATTACK3, DODGE}

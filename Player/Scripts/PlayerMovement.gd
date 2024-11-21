@@ -1,10 +1,11 @@
+class_name PlayerMovement
 extends Node
 
 @export var max_speed := 40.0
 @export var acceleration_time := 0.1
 @export var animation_player_hero : AnimationPlayer
 
-@onready var player : CharacterBody2D = get_owner()
+@onready var player : Player = get_owner()
 
 enum Directions {LEFT, RIGHT, UP, DOWN}
 

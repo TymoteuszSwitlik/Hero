@@ -1,0 +1,63 @@
+[gd_scene load_steps=4 format=3 uid="uid://bu0c3ex0g8akc"]
+
+[ext_resource type="Texture2D" uid="uid://mtldk3xu4pli" path="res://Asets/Tree_body.png" id="1_lwaxo"]
+[ext_resource type="Texture2D" uid="uid://c5mvu0kpgul0m" path="res://Asets/Tree_shadow.png" id="2_3nsqa"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7k40h"]
+radius = 2.0
+height = 12.0
+
+[node name="StaticBody2D" type="StaticBody2D"]
+
+[node name="Body" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(2, -24)
+scale = Vector2(2, 2)
+texture = ExtResource("1_lwaxo")
+metadata/_aseprite_wizard_config_ = {
+"i_mode": 1,
+"keep_anim_length": false,
+"layer": "Tree_body",
+"o_ex_p": "",
+"o_folder": "res://Level",
+"o_name": "",
+"only_visible": false,
+"player": "AnimationPlayer",
+"slice": "",
+"source": "C:/Users/user/Desktop/Aseprite Projects/Tree.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "7a84903c047078433caa7b100b271d72"
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": true,
+"output_section": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-1, -1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_7k40h")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(0.117647, 0.117647, 0.117647, 0.588235)
+texture_filter = 1
+position = Vector2(2, -24)
+scale = Vector2(2, 2)
+texture = ExtResource("2_3nsqa")
+metadata/_aseprite_wizard_config_ = {
+"i_mode": 1,
+"keep_anim_length": false,
+"layer": "Tree_shadow",
+"o_ex_p": "",
+"o_folder": "res://Level",
+"o_name": "",
+"only_visible": false,
+"player": "",
+"slice": "",
+"source": "C:/Users/user/Desktop/Aseprite Projects/Tree.aseprite"
+}
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": true,
+"output_section": true
+}
+metadata/_aseprite_wizard_source_file_hash_ = "7a84903c047078433caa7b100b271d72"

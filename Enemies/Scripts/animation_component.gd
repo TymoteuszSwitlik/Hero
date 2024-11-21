@@ -1,7 +1,9 @@
+class_name AnimationComp
 extends Node
 
-@onready var direction_component = owner.find_child("DirectionComponent")
-@onready var anim = owner.find_child("AnimationPlayer")
+@onready var direction_component: DirectionComp = owner.find_child("DirectionComponent")
+#@onready var anim: AnimationPlayer = owner.find_child("AnimationPlayer")
+@onready var anim = $"../AnimationPlayer"
 
 var direction ## chyba int
 var gaze_direction
@@ -14,7 +16,6 @@ func _ready():
 	direction = direction_component.animation_direction
 	gaze_direction = direction_component.gaze
 	disable_loops()
-	
 		
 func _process(delta):
 	direction = direction_component.animation_direction  ##do zmiany docelowo

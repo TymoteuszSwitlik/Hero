@@ -11,7 +11,7 @@ func enter():
 	enemy.velocity = Vector2.ZERO
 	
 	recovery_timer = Timer.new()
-	recovery_timer.wait_time = 0.5 #1
+	recovery_timer.wait_time = randi_range(0.5, 1) #1
 	recovery_timer.timeout.connect(on_timeout)
 	recovery_timer.autostart = true
 	add_child(recovery_timer)

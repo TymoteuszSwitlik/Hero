@@ -14,6 +14,8 @@ func physics_process_state(delta):
 	enemy.move_and_slide()
 
 func enter():
+
+
 	anim.attack_direction_unlock() # zeruje warunki pobierania kierunku w celu zablokowania kierunku animacji 
 	attack_speed = enemy.attack_speed
 	current_player_position = player.global_position
