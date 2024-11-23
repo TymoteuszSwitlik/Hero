@@ -10,8 +10,8 @@ var physics_is_going = false
 
 
 func _ready():
-	#call_deferred("get_target")
 	set_physics_process(false)
+	avoidance_enabled = false
 
 func _physics_process(delta):
 	if target:
@@ -22,23 +22,18 @@ func _physics_process(delta):
 	
 	current_agent_position = enemy.global_position	
 	next_path_position = self.get_next_path_position()
-	#velocity = current_agent_position.direction_to(next_path_position) * speed	
-	
-## najpewniej bede chciał wywołąc te funkcje w chase_state when see_player = false
-#func get_target():
-	#await get_tree().physics_frame
-	#if target:
-		#self.target_position = target.global_position
+		
 		
 func enter():
 	#self.debug_enabled = true     ## debug
 	if !physics_is_going:
 		physics_is_going = true
 		set_physics_process(true)
-	
+	avoidance_enabled = true
 		
 func exit():
 	#self.debug_enabled = false    ## debug
 	if physics_is_going:
 		physics_is_going = false
 		set_physics_process(false)
+	avoidance_enabled = false

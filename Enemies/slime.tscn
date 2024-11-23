@@ -20,9 +20,8 @@
 [ext_resource type="Script" path="res://Enemies/Scripts/States/enemy_recovery.gd" id="13_lgg0y"]
 [ext_resource type="Script" path="res://Enemies/Scripts/States/enemy_death.gd" id="16_saih2"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2obv7"]
-radius = 3.0
-height = 14.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_ebr70"]
+radius = 7.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vnqwh"]
 size = Vector2(16, 10)
@@ -444,21 +443,22 @@ radius = 100.0
 radius = 150.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ihwal"]
-radius = 40.0
+radius = 7.0
 
 [node name="Slime" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 4
 collision_mask = 3
 platform_floor_layers = 4294901760
 script = ExtResource("1_hsdst")
+chase_radius = 500.0
 
 [node name="PhysicsCollision" type="CollisionShape2D" parent="."]
 visible = false
 rotation = 1.5708
-shape = SubResource("CapsuleShape2D_2obv7")
+shape = SubResource("CircleShape2D_ebr70")
 
 [node name="Hitbox" type="Area2D" parent="."]
-position = Vector2(0, -1)
+position = Vector2(0, 2)
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("2_0klnp")
@@ -472,12 +472,11 @@ debug_color = Color(0.838708, 0.349023, 0.43313, 0.42)
 [node name="Shadow" type="Sprite2D" parent="."]
 modulate = Color(0.117647, 0.117647, 0.117647, 0.588235)
 texture_filter = 1
-position = Vector2(0, -12)
+position = Vector2(-1, -9)
 scale = Vector2(2, 2)
 texture = ExtResource("2_xtrp5")
 hframes = 4
 vframes = 3
-frame = 6
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,
 "keep_anim_length": false,
@@ -497,12 +496,11 @@ metadata/_aseprite_wizard_source_file_hash_ = "87b0a111dc46fb20f42e98b288ba6b9c"
 
 [node name="Body" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(0, -12)
+position = Vector2(-1, -9)
 scale = Vector2(2, 2)
 texture = ExtResource("1_gp5i6")
 hframes = 7
 vframes = 6
-frame = 16
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,
 "keep_anim_length": false,
@@ -528,10 +526,16 @@ libraries = {
 
 [node name="NavigationAgent" type="NavigationAgent2D" parent="."]
 path_desired_distance = 5.0
+path_max_distance = 10.0
 path_postprocessing = 1
+avoidance_enabled = true
+radius = 7.0
+neighbor_distance = 20.0
+max_speed = 20.0
 script = ExtResource("5_xso3q")
 
 [node name="ObstacleDetectionComponent" type="RayCast2D" parent="."]
+visible = false
 target_position = Vector2(69.69, 69.69)
 script = ExtResource("5_c8hj7")
 
@@ -599,10 +603,11 @@ offset_bottom = 3.0
 text = "Slime"
 
 [node name="Debug" type="Label" parent="."]
-offset_left = -10.0
-offset_top = -28.0
-offset_right = 90.0
-offset_bottom = 22.0
+visible = false
+offset_left = -12.0
+offset_top = -31.0
+offset_right = 88.0
+offset_bottom = 19.0
 scale = Vector2(0.5, 0.5)
 text = "debug"
 metadata/_edit_use_anchors_ = true
@@ -632,9 +637,11 @@ position = Vector2(20, 56)
 scale = Vector2(2, 2)
 
 [node name="CollisionShapeAttack" type="CollisionShape2D" parent="Debug/AttackRadius"]
+position = Vector2(2, 3)
 shape = SubResource("CircleShape2D_ihwal")
 debug_color = Color(1, 0.00392157, 0.0627451, 0.12549)
 
 [connection signal="damaged" from="Hitbox" to="." method="_on_hitbox_damaged"]
+[connection signal="velocity_computed" from="NavigationAgent" to="FSM/Chase" method="_on_navigation_agent_velocity_computed"]
 [connection signal="health_changed" from="HealthComponent" to="HealthLabel" method="_on_health_health_changed"]
 [connection signal="health_depleted" from="HealthComponent" to="HealthLabel" method="_on_health_health_depleted"]

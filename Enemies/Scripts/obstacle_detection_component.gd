@@ -19,11 +19,12 @@ func _physics_process(delta):
 		if self.is_colliding():
 			see_player = false
 		else:
-			print(is_colliding())
 			see_player = true
 	else:
 		self.enabled = false
 	
 	cnt = cnt +1
-	print(cnt, " ", see_player, "  is_colliding ", is_colliding())
+	
+	##debug
+	#print(cnt, " ", see_player, "  is_colliding ", is_colliding()) 
 		
