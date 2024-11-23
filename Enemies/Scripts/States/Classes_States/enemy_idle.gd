@@ -1,3 +1,4 @@
+class_name IdleState
 extends EnemyState
 
 var idle_timer: Timer

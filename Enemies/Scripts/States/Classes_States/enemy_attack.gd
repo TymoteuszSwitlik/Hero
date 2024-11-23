@@ -1,3 +1,4 @@
+class_name AttackState
 extends EnemyState
 
 var current_player_position = Vector2.ZERO

@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=3 uid="uid://c6hde4bgwklc1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p7k64"]
+radius = 100.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5qwuh"]
+radius = 150.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ihwal"]
+radius = 7.0
+
+[node name="Debug" type="Label"]
+visible = false
+offset_left = -12.0
+offset_top = -31.0
+offset_right = 88.0
+offset_bottom = 19.0
+scale = Vector2(0.5, 0.5)
+text = "debug"
+metadata/_edit_use_anchors_ = true
+
+[node name="DetectionRadius" type="Area2D" parent="."]
+visible = false
+position = Vector2(20, 56)
+scale = Vector2(2, 2)
+
+[node name="CollisionShapeDetection" type="CollisionShape2D" parent="DetectionRadius"]
+shape = SubResource("CircleShape2D_p7k64")
+debug_color = Color(0, 0.643137, 0.278431, 0.113725)
+
+[node name="ChaseRadius" type="Area2D" parent="."]
+visible = false
+position = Vector2(20, 56)
+scale = Vector2(2, 2)
+
+[node name="CollisionShapeChase" type="CollisionShape2D" parent="ChaseRadius"]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_5qwuh")
+debug_color = Color(0, 0.6, 0.701961, 0.109804)
+
+[node name="AttackRadius" type="Area2D" parent="."]
+visible = false
+position = Vector2(20, 56)
+scale = Vector2(2, 2)
+
+[node name="CollisionShapeAttack" type="CollisionShape2D" parent="AttackRadius"]
+position = Vector2(2, 3)
+shape = SubResource("CircleShape2D_ihwal")
+debug_color = Color(1, 0.00392157, 0.0627451, 0.12549)

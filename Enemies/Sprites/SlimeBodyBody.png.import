@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dbgskpo3idx8j"
-path="res://.godot/imported/Shadow.png-661b852002977fa13d976a216aa44838.ctex"
+uid="uid://0gcq17g7gjfa"
+path="res://.godot/imported/SlimeBodyBody.png-889764e71d0dba6269bebded823a00cc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Enemies/Shadow.png"
-dest_files=["res://.godot/imported/Shadow.png-661b852002977fa13d976a216aa44838.ctex"]
+source_file="res://Enemies/Sprites/SlimeBodyBody.png"
+dest_files=["res://.godot/imported/SlimeBodyBody.png-889764e71d0dba6269bebded823a00cc.ctex"]
 
 [params]
 

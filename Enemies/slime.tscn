@@ -1,30 +1,25 @@
-[gd_scene load_steps=40 format=3 uid="uid://cr4fil4jm5101"]
+[gd_scene load_steps=37 format=3 uid="uid://cr4fil4jm5101"]
 
-[ext_resource type="Texture2D" uid="uid://btx2rgqhlju4h" path="res://Enemies/Body.png" id="1_gp5i6"]
 [ext_resource type="Script" path="res://Enemies/Scripts/enemy.gd" id="1_hsdst"]
-[ext_resource type="Script" path="res://Utils/Components/hitbox.gd" id="2_0klnp"]
-[ext_resource type="Texture2D" uid="uid://dbgskpo3idx8j" path="res://Enemies/Shadow.png" id="2_xtrp5"]
-[ext_resource type="Script" path="res://Enemies/Scripts/animation_component.gd" id="3_excge"]
+[ext_resource type="Texture2D" uid="uid://vy4hf2lkbqdo" path="res://Enemies/Sprites/SlimeShadowShadow.png" id="2_naqtp"]
+[ext_resource type="Texture2D" uid="uid://0gcq17g7gjfa" path="res://Enemies/Sprites/SlimeBodyBody.png" id="3_67xt0"]
+[ext_resource type="PackedScene" uid="uid://u6hreeseyoum" path="res://Enemies/Components/hitbox.tscn" id="4_10okn"]
 [ext_resource type="Script" path="res://Enemies/Scripts/enemy_state_machine.gd" id="4_26qwq"]
-[ext_resource type="Script" path="res://Enemies/Scripts/obstacle_detection_component.gd" id="5_c8hj7"]
-[ext_resource type="Script" path="res://Utils/Components/health.gd" id="5_dpvvm"]
-[ext_resource type="Script" path="res://Enemies/Scripts/States/enemy_idle.gd" id="5_j40fe"]
-[ext_resource type="Script" path="res://Enemies/Scripts/navigation_agent_component.gd" id="5_xso3q"]
-[ext_resource type="Script" path="res://Enemies/Scripts/States/enemy_wander.gd" id="6_62dmh"]
-[ext_resource type="Script" path="res://Enemies/Scripts/direction_component.gd" id="6_utlxf"]
-[ext_resource type="Script" path="res://Enemies/Scripts/States/enemy_chase.gd" id="7_8xrgt"]
-[ext_resource type="Script" path="res://Enemies/Scripts/States/enemy_attack.gd" id="8_mklsu"]
-[ext_resource type="Script" path="res://Enemies/Scripts/States/enemy_hurt.gd" id="9_5niya"]
-[ext_resource type="Script" path="res://Enemies/Scripts/States/enemy_prepare.gd" id="13_1iyn2"]
-[ext_resource type="Script" path="res://Utils/Components/health_label.gd" id="13_5tcsr"]
-[ext_resource type="Script" path="res://Enemies/Scripts/States/enemy_recovery.gd" id="13_lgg0y"]
-[ext_resource type="Script" path="res://Enemies/Scripts/States/enemy_death.gd" id="16_saih2"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_ebr70"]
-radius = 7.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vnqwh"]
-size = Vector2(16, 10)
+[ext_resource type="Script" path="res://Enemies/Scripts/States/Classes_States/enemy_idle.gd" id="5_j40fe"]
+[ext_resource type="PackedScene" uid="uid://cody4x62e8okl" path="res://Enemies/Components/animation_component.tscn" id="5_o1dfl"]
+[ext_resource type="Script" path="res://Enemies/Scripts/States/Classes_States/enemy_wander.gd" id="6_62dmh"]
+[ext_resource type="PackedScene" uid="uid://dblb3t460hydl" path="res://Enemies/Components/direction_component.tscn" id="6_wvdmg"]
+[ext_resource type="Script" path="res://Enemies/Scripts/States/Classes_States/enemy_chase.gd" id="7_8xrgt"]
+[ext_resource type="PackedScene" uid="uid://03kstpmw8jgd" path="res://Enemies/Components/health_component.tscn" id="7_k3fo1"]
+[ext_resource type="Script" path="res://Enemies/Scripts/States/Classes_States/enemy_attack.gd" id="8_mklsu"]
+[ext_resource type="Script" path="res://Enemies/Scripts/States/Classes_States/enemy_hurt.gd" id="9_5niya"]
+[ext_resource type="PackedScene" uid="uid://c4o741umelbmb" path="res://Enemies/Components/navigation_agent.tscn" id="9_eu0h6"]
+[ext_resource type="PackedScene" uid="uid://dec3btl1v4i4e" path="res://Enemies/Components/obstacle_detection_component.tscn" id="10_aiwia"]
+[ext_resource type="PackedScene" uid="uid://c0h66toyvm6un" path="res://Enemies/Components/health_label.tscn" id="11_c3s8a"]
+[ext_resource type="PackedScene" uid="uid://c6hde4bgwklc1" path="res://Enemies/Components/debug.tscn" id="12_meqdd"]
+[ext_resource type="Script" path="res://Enemies/Scripts/States/Classes_States/enemy_prepare.gd" id="13_1iyn2"]
+[ext_resource type="Script" path="res://Enemies/Scripts/States/Classes_States/enemy_recovery.gd" id="13_lgg0y"]
+[ext_resource type="Script" path="res://Enemies/Scripts/States/Classes_States/enemy_death.gd" id="16_saih2"]
 
 [sub_resource type="Animation" id="Animation_w4mri"]
 length = 0.9
@@ -436,13 +431,7 @@ _data = {
 "RunRight": SubResource("Animation_nlv62")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_p7k64"]
-radius = 100.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_5qwuh"]
-radius = 150.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_ihwal"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_ebr70"]
 radius = 7.0
 
 [node name="Slime" type="CharacterBody2D" groups=["Enemy"]]
@@ -452,45 +441,30 @@ platform_floor_layers = 4294901760
 script = ExtResource("1_hsdst")
 chase_radius = 500.0
 
-[node name="PhysicsCollision" type="CollisionShape2D" parent="."]
-visible = false
-rotation = 1.5708
-shape = SubResource("CircleShape2D_ebr70")
-
-[node name="Hitbox" type="Area2D" parent="."]
-position = Vector2(0, 2)
-collision_layer = 4
-collision_mask = 3
-script = ExtResource("2_0klnp")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-visible = false
-position = Vector2(0, -3)
-shape = SubResource("RectangleShape2D_vnqwh")
-debug_color = Color(0.838708, 0.349023, 0.43313, 0.42)
-
 [node name="Shadow" type="Sprite2D" parent="."]
 modulate = Color(0.117647, 0.117647, 0.117647, 0.588235)
 texture_filter = 1
 position = Vector2(-1, -9)
 scale = Vector2(2, 2)
-texture = ExtResource("2_xtrp5")
+texture = ExtResource("2_naqtp")
 hframes = 4
 vframes = 3
+frame = 6
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,
 "keep_anim_length": false,
 "layer": "Shadow",
 "o_ex_p": "",
-"o_folder": "",
-"o_name": "",
+"o_folder": "res://Enemies/Sprites",
+"o_name": "SlimeShadow",
 "only_visible": false,
 "player": "AnimationPlayer",
 "slice": "",
 "source": "C:/Users/user/Desktop/Aseprite Projects/Slime.aseprite"
 }
 metadata/_aseprite_wizard_interface_config_ = {
-"layer_section": true
+"layer_section": true,
+"output_section": true
 }
 metadata/_aseprite_wizard_source_file_hash_ = "87b0a111dc46fb20f42e98b288ba6b9c"
 
@@ -498,16 +472,17 @@ metadata/_aseprite_wizard_source_file_hash_ = "87b0a111dc46fb20f42e98b288ba6b9c"
 texture_filter = 1
 position = Vector2(-1, -9)
 scale = Vector2(2, 2)
-texture = ExtResource("1_gp5i6")
+texture = ExtResource("3_67xt0")
 hframes = 7
 vframes = 6
+frame = 16
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,
 "keep_anim_length": false,
 "layer": "Body",
 "o_ex_p": "",
-"o_folder": "res://Enemies",
-"o_name": "",
+"o_folder": "res://Enemies/Sprites",
+"o_name": "SlimeBody",
 "only_visible": false,
 "player": "AnimationPlayer",
 "slice": "",
@@ -524,30 +499,17 @@ libraries = {
 "": SubResource("AnimationLibrary_cyjnj")
 }
 
-[node name="NavigationAgent" type="NavigationAgent2D" parent="."]
-path_desired_distance = 5.0
-path_max_distance = 10.0
-path_postprocessing = 1
-avoidance_enabled = true
-radius = 7.0
-neighbor_distance = 20.0
-max_speed = 20.0
-script = ExtResource("5_xso3q")
+[node name="PhysicsCollision" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CircleShape2D_ebr70")
 
-[node name="ObstacleDetectionComponent" type="RayCast2D" parent="."]
-visible = false
-target_position = Vector2(69.69, 69.69)
-script = ExtResource("5_c8hj7")
+[node name="Hitbox" parent="." instance=ExtResource("4_10okn")]
 
-[node name="HealthComponent" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
-script = ExtResource("5_dpvvm")
-hitbox = NodePath("../Hitbox")
+[node name="AnimationComponent" parent="." instance=ExtResource("5_o1dfl")]
 
-[node name="DirectionComponent" type="Node" parent="."]
-script = ExtResource("6_utlxf")
+[node name="DirectionComponent" parent="." instance=ExtResource("6_wvdmg")]
 
-[node name="AnimationComponent" type="Node" parent="."]
-script = ExtResource("3_excge")
+[node name="HealthComponent" parent="." instance=ExtResource("7_k3fo1")]
 
 [node name="FSM" type="Node" parent="."]
 script = ExtResource("4_26qwq")
@@ -561,11 +523,11 @@ script = ExtResource("6_62dmh")
 [node name="Chase" type="Node" parent="FSM"]
 script = ExtResource("7_8xrgt")
 
-[node name="Attack" type="Node" parent="FSM"]
-script = ExtResource("8_mklsu")
-
 [node name="Prepare" type="Node" parent="FSM"]
 script = ExtResource("13_1iyn2")
+
+[node name="Attack" type="Node" parent="FSM"]
+script = ExtResource("8_mklsu")
 
 [node name="Recovery" type="Node" parent="FSM"]
 script = ExtResource("13_lgg0y")
@@ -576,15 +538,11 @@ script = ExtResource("9_5niya")
 [node name="Death" type="Node" parent="FSM"]
 script = ExtResource("16_saih2")
 
-[node name="HealthLabel" type="Label" parent="."]
-visible = false
-offset_left = -5.0
-offset_top = -21.0
-offset_right = 15.0
-offset_bottom = 2.0
-scale = Vector2(0.4, 0.4)
-text = "1"
-script = ExtResource("13_5tcsr")
+[node name="NavigationAgent" parent="." instance=ExtResource("9_eu0h6")]
+
+[node name="ObstacleDetectionComponent" parent="." instance=ExtResource("10_aiwia")]
+
+[node name="HealthLabel" parent="." instance=ExtResource("11_c3s8a")]
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 visible = false
@@ -602,46 +560,4 @@ offset_right = 43.0
 offset_bottom = 3.0
 text = "Slime"
 
-[node name="Debug" type="Label" parent="."]
-visible = false
-offset_left = -12.0
-offset_top = -31.0
-offset_right = 88.0
-offset_bottom = 19.0
-scale = Vector2(0.5, 0.5)
-text = "debug"
-metadata/_edit_use_anchors_ = true
-
-[node name="DetectionRadius" type="Area2D" parent="Debug"]
-visible = false
-position = Vector2(20, 56)
-scale = Vector2(2, 2)
-
-[node name="CollisionShapeDetection" type="CollisionShape2D" parent="Debug/DetectionRadius"]
-shape = SubResource("CircleShape2D_p7k64")
-debug_color = Color(0, 0.643137, 0.278431, 0.113725)
-
-[node name="ChaseRadius" type="Area2D" parent="Debug"]
-visible = false
-position = Vector2(20, 56)
-scale = Vector2(2, 2)
-
-[node name="CollisionShapeChase" type="CollisionShape2D" parent="Debug/ChaseRadius"]
-position = Vector2(0, 1)
-shape = SubResource("CircleShape2D_5qwuh")
-debug_color = Color(0, 0.6, 0.701961, 0.109804)
-
-[node name="AttackRadius" type="Area2D" parent="Debug"]
-visible = false
-position = Vector2(20, 56)
-scale = Vector2(2, 2)
-
-[node name="CollisionShapeAttack" type="CollisionShape2D" parent="Debug/AttackRadius"]
-position = Vector2(2, 3)
-shape = SubResource("CircleShape2D_ihwal")
-debug_color = Color(1, 0.00392157, 0.0627451, 0.12549)
-
-[connection signal="damaged" from="Hitbox" to="." method="_on_hitbox_damaged"]
-[connection signal="velocity_computed" from="NavigationAgent" to="FSM/Chase" method="_on_navigation_agent_velocity_computed"]
-[connection signal="health_changed" from="HealthComponent" to="HealthLabel" method="_on_health_health_changed"]
-[connection signal="health_depleted" from="HealthComponent" to="HealthLabel" method="_on_health_health_depleted"]
+[node name="Debug" parent="." instance=ExtResource("12_meqdd")]

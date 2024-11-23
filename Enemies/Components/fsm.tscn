@@ -1,0 +1,38 @@
+[gd_scene load_steps=10 format=3 uid="uid://dq1vikw40sqcs"]
+
+[ext_resource type="Script" path="res://Enemies/Scripts/enemy_state_machine.gd" id="1_0gshb"]
+[ext_resource type="Script" path="res://Enemies/Scripts/States/Classes_States/enemy_idle.gd" id="2_hjh8o"]
+[ext_resource type="Script" path="res://Enemies/Scripts/States/Classes_States/enemy_wander.gd" id="3_c31pm"]
+[ext_resource type="Script" path="res://Enemies/Scripts/States/Classes_States/enemy_chase.gd" id="4_wbbx8"]
+[ext_resource type="Script" path="res://Enemies/Scripts/States/Classes_States/enemy_attack.gd" id="5_rqi2a"]
+[ext_resource type="Script" path="res://Enemies/Scripts/States/Classes_States/enemy_prepare.gd" id="6_yhqe6"]
+[ext_resource type="Script" path="res://Enemies/Scripts/States/Classes_States/enemy_recovery.gd" id="7_vtbm4"]
+[ext_resource type="Script" path="res://Enemies/Scripts/States/Classes_States/enemy_hurt.gd" id="8_cqnim"]
+[ext_resource type="Script" path="res://Enemies/Scripts/States/Classes_States/enemy_death.gd" id="9_2bll2"]
+
+[node name="FSM" type="Node"]
+script = ExtResource("1_0gshb")
+
+[node name="Idle" type="Node" parent="."]
+script = ExtResource("2_hjh8o")
+
+[node name="Wander" type="Node" parent="."]
+script = ExtResource("3_c31pm")
+
+[node name="Chase" type="Node" parent="."]
+script = ExtResource("4_wbbx8")
+
+[node name="Attack" type="Node" parent="."]
+script = ExtResource("5_rqi2a")
+
+[node name="Prepare" type="Node" parent="."]
+script = ExtResource("6_yhqe6")
+
+[node name="Recovery" type="Node" parent="."]
+script = ExtResource("7_vtbm4")
+
+[node name="Hurt" type="Node" parent="."]
+script = ExtResource("8_cqnim")
+
+[node name="Death" type="Node" parent="."]
+script = ExtResource("9_2bll2")

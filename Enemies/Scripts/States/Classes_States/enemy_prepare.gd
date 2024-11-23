@@ -1,3 +1,4 @@
+class_name PrepareAttackState
 extends EnemyState
 
 var prepare_timer: Timer

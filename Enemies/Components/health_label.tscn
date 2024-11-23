@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0h66toyvm6un"]
+
+[ext_resource type="Script" path="res://Utils/Components/health_label.gd" id="1_xnomo"]
+
+[node name="HealthLabel" type="Label"]
+visible = false
+offset_left = -5.0
+offset_top = -21.0
+offset_right = 15.0
+offset_bottom = 2.0
+scale = Vector2(0.4, 0.4)
+text = "1"
+script = ExtResource("1_xnomo")

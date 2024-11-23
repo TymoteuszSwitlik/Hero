@@ -1,3 +1,4 @@
+class_name RecoveryAttackState
 extends EnemyState
 
 var recovery_timer = Timer

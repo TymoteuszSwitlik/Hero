@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dec3btl1v4i4e"]
+
+[ext_resource type="Script" path="res://Enemies/Scripts/obstacle_detection_component.gd" id="1_xm6up"]
+
+[node name="ObstacleDetectionComponent" type="RayCast2D"]
+visible = false
+target_position = Vector2(69.69, 69.69)
+script = ExtResource("1_xm6up")

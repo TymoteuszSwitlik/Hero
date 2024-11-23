@@ -1,3 +1,4 @@
+class_name DeathState
 extends EnemyState
 
 var timer : Timer

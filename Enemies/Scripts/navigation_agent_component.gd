@@ -12,6 +12,7 @@ var physics_is_going = false
 func _ready():
 	set_physics_process(false)
 	avoidance_enabled = false
+	
 
 func _physics_process(delta):
 	if target:
