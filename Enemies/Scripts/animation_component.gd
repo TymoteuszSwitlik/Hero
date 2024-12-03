@@ -9,8 +9,6 @@ var direction ## chyba int
 var gaze_direction
 var lock_direction = false
 var locked_direction = null
-#var last_animation_position = 0.0
-#var last_animation_name = ""
 
 func _ready():
 	direction = direction_component.animation_direction
@@ -39,13 +37,13 @@ func disable_loops():
 			anim.get_animation(anim_name).loop_mode = 0
 	
 func play_idle():
-	if direction == 0:
+	if direction_component.animation_direction == 0:
 		anim.play("IdleLeft")
 	else:
 		anim.play("IdleRight")
 	
 func play_run():
-	if direction == 0:
+	if direction_component.animation_direction == 0:
 		anim.play("RunLeft")
 	else:
 		anim.play("RunRight")
@@ -53,7 +51,7 @@ func play_run():
 	
 
 func play_prepare():
-	if direction == 0:
+	if direction_component.animation_direction == 0:
 		anim.play("PrepareLeft")
 	else:
 		anim.play("PrepareRight")
@@ -65,7 +63,7 @@ func attack_direction_unlock():
 func play_attack():
 	#print(locked_direction)
 	if !lock_direction:
-		if gaze_direction == 0:
+		if direction_component.gaze == 0:
 			locked_direction = 0
 		else:
 			locked_direction = 1
@@ -78,20 +76,20 @@ func play_attack():
 			
 	
 func play_recovery():
-	if direction == 0:
+	if direction_component.animation_direction == 0:
 		anim.play("RecoveryLeft")
 	else:
 		anim.play("RecoveryRight")
 
 func play_hurt():
-	if direction == 0:
+	if direction_component.animation_direction == 0:
 		anim.play("HurtLeft")
 	else:
 		anim.play("HurtRight")
 
 
 func play_death():
-	if direction == 0:
+	if direction_component.animation_direction == 0:
 		anim.play("DeathLeft")
 	else:
 		anim.play("DeathRight")

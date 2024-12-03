@@ -3,12 +3,14 @@ extends EnemyState
 
 var idle_timer: Timer
 var cnt = 0 ##debug
-	
+
+
 
 
 func process_state(delta):
 	anim.play_idle()
-
+	
+	
 func physics_process_state(delta):
 	try_chase()
 	

@@ -24,6 +24,7 @@ func physics_process_state(delta):
 	
 	## follow player 
 	if obstacle_detect.see_player and can_follow_player:
+		print("follow player")
 		follow_type = true                  ## is following player
 		
 		navigation.exit()                   ## stop nav_agent physics process
@@ -31,6 +32,7 @@ func physics_process_state(delta):
 	
 	## follow nav_agent (path to player)
 	else:
+		print("follow nav-agent")
 		if follow_type:                     ## once after changing from follow player
 			can_follow_player = false       ## stop allowing to follow player
 		follow_type = false                 ## is following nav_agent
@@ -46,6 +48,7 @@ func physics_process_state(delta):
 	
 	 
 func enter():
+	navigation.velocity_computed.connect(_on_navigation_agent_velocity_computed)
 	
 	rand_direction_timer = Timer.new()
 	rand_direction_timer.one_shot = false
@@ -79,6 +82,8 @@ func follow_path():
 	
 
 func exit():
+	navigation.velocity_computed.disconnect(_on_navigation_agent_velocity_computed)
+	
 	rand_direction_timer.timeout.disconnect(on_rand_direction_timeout)
 	rand_direction_timer.stop()
 	rand_direction_timer.queue_free()
@@ -92,5 +97,5 @@ func exit():
 	navigation.exit()                   ## stop nav_agent physics process
 
 
-func _on_navigation_agent_velocity_computed(safe_velocity): 
+func _on_navigation_agent_velocity_computed(safe_velocity):
 	enemy.velocity = safe_velocity      ## change enemy velocity to avoid another nav_agents

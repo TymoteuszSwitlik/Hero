@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=4 uid="uid://c42p7fs6sx0j0"]
+[gd_scene load_steps=12 format=4 uid="uid://c42p7fs6sx0j0"]
 
 [ext_resource type="PackedScene" uid="uid://xbexpme8hk16" path="res://Player/Player.tscn" id="1_nrsy4"]
 [ext_resource type="Texture2D" uid="uid://by6ln5d3pdia0" path="res://Asets/Solaria Demo Update 01.png" id="2_sts81"]
-[ext_resource type="PackedScene" uid="uid://cr4fil4jm5101" path="res://Enemies/slime.tscn" id="3_m0kcq"]
+[ext_resource type="PackedScene" uid="uid://d2cnun16eyy2v" path="res://Enemies/Gobln_musze_ogarnac_te_pliki_i_kody/slime.tscn" id="4_357lx"]
 [ext_resource type="Script" path="res://debug_draw.gd" id="4_wwu8t"]
+[ext_resource type="PackedScene" uid="uid://fsqhhd17c8bc" path="res://Enemies/Gobln_musze_ogarnac_te_pliki_i_kody/goblin.tscn" id="5_x2hpn"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ousjh"]
 vertices = PackedVector2Array(8, 3, -8, 3, -8, -8, 8, -8)
@@ -445,5 +446,8 @@ collision_mask = 7
 [node name="DebugDraw" type="Node2D" parent="."]
 script = ExtResource("4_wwu8t")
 
-[node name="Slime" parent="." instance=ExtResource("3_m0kcq")]
-position = Vector2(-29, -75)
+[node name="Slime" parent="." instance=ExtResource("4_357lx")]
+position = Vector2(36, -129)
+
+[node name="Goblin" parent="." instance=ExtResource("5_x2hpn")]
+position = Vector2(-152, -124)

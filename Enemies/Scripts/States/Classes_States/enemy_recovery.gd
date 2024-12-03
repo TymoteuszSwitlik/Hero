@@ -19,7 +19,7 @@ func enter():
 	
 
 func on_timeout():
-	transitioned.emit(self, "chase")
+	transitioned.emit(self, "wander")
 	
 func exit():
 	recovery_timer.timeout.disconnect(on_timeout)

@@ -11,9 +11,10 @@ extends CharacterBody2D
 #@export var attack_power = 1         ## how much damage is dealing
 
 @export_group("Vision Ranges") 
-@export var detection_radius = 100.0  ## how far sees player                   70
-@export var chase_radius = 150.0      ## how far is chasing player            100
-@export var attack_radius = 40.0      ## how close player should be to attack  40
+#@export_enum("Slow:30", "Average:60", "Very Fast:200") var character_speed: int
+@export var attack_radius = 10.0      ## how close player should be to attack  40
+@export var detection_radius = 20.0  ## how far sees player                   70
+@export var chase_radius = 30.0      ## how far is chasing player            100
 
 var alive: = true
 

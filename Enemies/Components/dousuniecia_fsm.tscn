@@ -1,7 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://dq1vikw40sqcs"]
+[gd_scene load_steps=10 format=3 uid="uid://bxpwm6n43ncd0"]
 
 [ext_resource type="Script" path="res://Enemies/Scripts/enemy_state_machine.gd" id="1_0gshb"]
-[ext_resource type="Script" path="res://Enemies/Scripts/States/Classes_States/enemy_idle.gd" id="2_hjh8o"]
+[ext_resource type="Script" path="res://Enemies/Scripts/States/Goblin_States/goblin_attack.gd" id="2_cce6w"]
 [ext_resource type="Script" path="res://Enemies/Scripts/States/Classes_States/enemy_wander.gd" id="3_c31pm"]
 [ext_resource type="Script" path="res://Enemies/Scripts/States/Classes_States/enemy_chase.gd" id="4_wbbx8"]
 [ext_resource type="Script" path="res://Enemies/Scripts/States/Classes_States/enemy_attack.gd" id="5_rqi2a"]
@@ -14,7 +14,7 @@
 script = ExtResource("1_0gshb")
 
 [node name="Idle" type="Node" parent="."]
-script = ExtResource("2_hjh8o")
+script = ExtResource("2_cce6w")
 
 [node name="Wander" type="Node" parent="."]
 script = ExtResource("3_c31pm")

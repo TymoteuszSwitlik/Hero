@@ -1,0 +1,11 @@
+extends DebugDistanceRadius
+
+	
+func set_shape_properities():
+	collisionshape.shape.radius = enemy.detection_radius 	
+	collisionshape.debug_color = Color.LIME_GREEN
+	collisionshape.debug_color.a = 0.01
+
+
+	#print(enemy.detection_radius)
+	

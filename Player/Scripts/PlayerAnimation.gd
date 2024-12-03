@@ -53,7 +53,7 @@ func get_direction():
 		direction = Directions.DOWN
 	else:
 		pass
-
+	print(direction)
 
 func get_input():
 	velocity = player.velocity

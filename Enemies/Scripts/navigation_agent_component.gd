@@ -1,7 +1,7 @@
 class_name NavigationAgent
 extends NavigationAgent2D
 
-@onready var target: Player = get_tree().get_first_node_in_group("Player") 
+@onready var target: Player = get_tree().get_first_node_in_group("Player") #pewnie do zmiany przy dodaniu coopa
 @onready var enemy: Enemy = get_owner()
 
 var current_agent_position = Vector2.ZERO
@@ -26,14 +26,14 @@ func _physics_process(delta):
 		
 		
 func enter():
-	#self.debug_enabled = true     ## debug
+	self.debug_enabled = true     ## debug
 	if !physics_is_going:
 		physics_is_going = true
 		set_physics_process(true)
 	avoidance_enabled = true
 		
 func exit():
-	#self.debug_enabled = false    ## debug
+	self.debug_enabled = false    ## debug
 	if physics_is_going:
 		physics_is_going = false
 		set_physics_process(false)

@@ -1,31 +1,16 @@
-[gd_scene load_steps=42 format=3 uid="uid://rqn4kvtuef2x"]
+[gd_scene load_steps=26 format=3 uid="uid://fsqhhd17c8bc"]
 
-[ext_resource type="Script" path="res://Enemies/Scripts/enemy.gd" id="1_g0ebc"]
-[ext_resource type="Texture2D" uid="uid://rahimk6aamib" path="res://Enemies/Sprites/GoblinShadowShadow.png" id="2_mk65v"]
-[ext_resource type="Texture2D" uid="uid://haqvb4bltnsr" path="res://Enemies/Sprites/GoblinBodyBody.png" id="3_mvhl3"]
-[ext_resource type="PackedScene" uid="uid://u6hreeseyoum" path="res://Enemies/Components/hitbox.tscn" id="4_co1b5"]
-[ext_resource type="PackedScene" uid="uid://cody4x62e8okl" path="res://Enemies/Components/animation_component.tscn" id="5_mlks2"]
-[ext_resource type="PackedScene" uid="uid://dblb3t460hydl" path="res://Enemies/Components/direction_component.tscn" id="6_bfjsa"]
-[ext_resource type="PackedScene" uid="uid://03kstpmw8jgd" path="res://Enemies/Components/health_component.tscn" id="7_u212t"]
-[ext_resource type="Script" path="res://Enemies/Scripts/enemy_state_machine.gd" id="8_lmnel"]
-[ext_resource type="Script" path="res://Enemies/Scripts/States/Goblin_States/goblin_idle.gd" id="9_7m4n6"]
-[ext_resource type="PackedScene" uid="uid://c4o741umelbmb" path="res://Enemies/Components/navigation_agent.tscn" id="9_fij1d"]
-[ext_resource type="PackedScene" uid="uid://dec3btl1v4i4e" path="res://Enemies/Components/obstacle_detection_component.tscn" id="10_22tk1"]
-[ext_resource type="Script" path="res://Enemies/Scripts/States/Goblin_States/goblin_wander.gd" id="10_f625i"]
-[ext_resource type="PackedScene" uid="uid://c0h66toyvm6un" path="res://Enemies/Components/health_label.tscn" id="11_fhv8i"]
-[ext_resource type="Script" path="res://Enemies/Scripts/States/Goblin_States/goblin_chase.gd" id="11_sangc"]
-[ext_resource type="PackedScene" uid="uid://c6hde4bgwklc1" path="res://Enemies/Components/debug.tscn" id="12_j3j5x"]
-[ext_resource type="Script" path="res://Enemies/Scripts/States/Goblin_States/goblin_attack.gd" id="12_pdi64"]
-[ext_resource type="Script" path="res://Enemies/Scripts/States/Goblin_States/goblin_hurt.gd" id="13_ssy1n"]
-[ext_resource type="Script" path="res://Enemies/Scripts/States/Goblin_States/goblin_death.gd" id="14_t33r3"]
+[ext_resource type="PackedScene" uid="uid://dyvn1itkn7qf5" path="res://Enemies/enemy.tscn" id="1_0ij6g"]
+[ext_resource type="Texture2D" uid="uid://b0roq3fxb22lp" path="res://Enemies/Gobln_musze_ogarnac_te_pliki_i_kody/testgoblinbodyBody.png" id="2_3k47e"]
+[ext_resource type="Texture2D" uid="uid://cjrr417swpqbv" path="res://Enemies/Gobln_musze_ogarnac_te_pliki_i_kody/testGoblinShadowShadow.png" id="3_507fp"]
 
-[sub_resource type="Animation" id="Animation_3e100"]
+[sub_resource type="Animation" id="Animation_tpwci"]
 length = 0.8
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Body:frame")
+tracks/0/path = NodePath("Body:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
@@ -37,7 +22,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:frame")
+tracks/1/path = NodePath("Shadow:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = false
 tracks/1/keys = {
@@ -47,13 +32,13 @@ tracks/1/keys = {
 "values": [6, 2, 2, 2]
 }
 
-[sub_resource type="Animation" id="Animation_3mecd"]
+[sub_resource type="Animation" id="Animation_cgv80"]
 length = 0.8
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Body:frame")
+tracks/0/path = NodePath("Body:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
@@ -65,7 +50,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:frame")
+tracks/1/path = NodePath("Shadow:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = false
 tracks/1/keys = {
@@ -75,13 +60,13 @@ tracks/1/keys = {
 "values": [4, 5, 5, 5]
 }
 
-[sub_resource type="Animation" id="Animation_8topy"]
+[sub_resource type="Animation" id="Animation_xbjyh"]
 length = 0.8
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Body:frame")
+tracks/0/path = NodePath("Body:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
@@ -93,7 +78,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:frame")
+tracks/1/path = NodePath("Shadow:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = false
 tracks/1/keys = {
@@ -103,13 +88,13 @@ tracks/1/keys = {
 "values": [3, 5, 5, 5]
 }
 
-[sub_resource type="Animation" id="Animation_fsy32"]
+[sub_resource type="Animation" id="Animation_474uf"]
 length = 0.8
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Body:frame")
+tracks/0/path = NodePath("Body:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
@@ -121,7 +106,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:frame")
+tracks/1/path = NodePath("Shadow:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = false
 tracks/1/keys = {
@@ -131,13 +116,13 @@ tracks/1/keys = {
 "values": [3, 1, 1, 1]
 }
 
-[sub_resource type="Animation" id="Animation_wu1xi"]
+[sub_resource type="Animation" id="Animation_frspt"]
 length = 0.6
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Body:frame")
+tracks/0/path = NodePath("Body:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
@@ -149,7 +134,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:frame")
+tracks/1/path = NodePath("Shadow:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = false
 tracks/1/keys = {
@@ -159,13 +144,13 @@ tracks/1/keys = {
 "values": [8, 15, 16]
 }
 
-[sub_resource type="Animation" id="Animation_6pjoi"]
+[sub_resource type="Animation" id="Animation_jt7x8"]
 length = 0.6
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Body:frame")
+tracks/0/path = NodePath("Body:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
@@ -177,7 +162,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:frame")
+tracks/1/path = NodePath("Shadow:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = false
 tracks/1/keys = {
@@ -187,13 +172,13 @@ tracks/1/keys = {
 "values": [22, 23, 24]
 }
 
-[sub_resource type="Animation" id="Animation_5ltyk"]
+[sub_resource type="Animation" id="Animation_jjrnn"]
 length = 0.6
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Body:frame")
+tracks/0/path = NodePath("Body:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
@@ -205,7 +190,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:frame")
+tracks/1/path = NodePath("Shadow:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = false
 tracks/1/keys = {
@@ -215,13 +200,13 @@ tracks/1/keys = {
 "values": [17, 18, 19]
 }
 
-[sub_resource type="Animation" id="Animation_beagf"]
+[sub_resource type="Animation" id="Animation_po2m2"]
 length = 0.6
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Body:frame")
+tracks/0/path = NodePath("Body:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
@@ -233,7 +218,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:frame")
+tracks/1/path = NodePath("Shadow:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = false
 tracks/1/keys = {
@@ -243,13 +228,13 @@ tracks/1/keys = {
 "values": [11, 20, 21]
 }
 
-[sub_resource type="Animation" id="Animation_6uime"]
+[sub_resource type="Animation" id="Animation_54wcp"]
 length = 0.8
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Body:frame")
+tracks/0/path = NodePath("Body:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
@@ -261,7 +246,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:frame")
+tracks/1/path = NodePath("Shadow:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = false
 tracks/1/keys = {
@@ -271,13 +256,13 @@ tracks/1/keys = {
 "values": [7, 7, 8, 1]
 }
 
-[sub_resource type="Animation" id="Animation_ghha6"]
+[sub_resource type="Animation" id="Animation_yvt0k"]
 length = 0.8
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Body:frame")
+tracks/0/path = NodePath("Body:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
@@ -289,7 +274,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:frame")
+tracks/1/path = NodePath("Shadow:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = false
 tracks/1/keys = {
@@ -299,13 +284,13 @@ tracks/1/keys = {
 "values": [13, 14, 8, 1]
 }
 
-[sub_resource type="Animation" id="Animation_eb74l"]
+[sub_resource type="Animation" id="Animation_atnxd"]
 length = 0.8
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Body:frame")
+tracks/0/path = NodePath("Body:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
@@ -317,7 +302,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:frame")
+tracks/1/path = NodePath("Shadow:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = false
 tracks/1/keys = {
@@ -327,13 +312,13 @@ tracks/1/keys = {
 "values": [9, 10, 11, 2]
 }
 
-[sub_resource type="Animation" id="Animation_g8fhc"]
+[sub_resource type="Animation" id="Animation_tgfah"]
 length = 0.8
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Body:frame")
+tracks/0/path = NodePath("Body:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
@@ -345,7 +330,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:frame")
+tracks/1/path = NodePath("Shadow:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = false
 tracks/1/keys = {
@@ -355,13 +340,13 @@ tracks/1/keys = {
 "values": [12, 10, 11, 2]
 }
 
-[sub_resource type="Animation" id="Animation_kvyd0"]
+[sub_resource type="Animation" id="Animation_0haey"]
 length = 1.6
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Body:frame")
+tracks/0/path = NodePath("Body:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
@@ -373,7 +358,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:frame")
+tracks/1/path = NodePath("Shadow:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = false
 tracks/1/keys = {
@@ -383,13 +368,13 @@ tracks/1/keys = {
 "values": [1, 1, 1, 1, 1, 1, 1, 1]
 }
 
-[sub_resource type="Animation" id="Animation_u77db"]
+[sub_resource type="Animation" id="Animation_t76ov"]
 length = 1.6
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Body:frame")
+tracks/0/path = NodePath("Body:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
@@ -401,7 +386,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:frame")
+tracks/1/path = NodePath("Shadow:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = false
 tracks/1/keys = {
@@ -411,13 +396,13 @@ tracks/1/keys = {
 "values": [1, 1, 1, 1, 1, 1, 1, 1]
 }
 
-[sub_resource type="Animation" id="Animation_157la"]
+[sub_resource type="Animation" id="Animation_lwsne"]
 length = 1.6
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Body:frame")
+tracks/0/path = NodePath("Body:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
@@ -429,7 +414,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:frame")
+tracks/1/path = NodePath("Shadow:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = false
 tracks/1/keys = {
@@ -439,13 +424,13 @@ tracks/1/keys = {
 "values": [2, 2, 2, 2, 2, 2, 2, 2]
 }
 
-[sub_resource type="Animation" id="Animation_6yj5w"]
+[sub_resource type="Animation" id="Animation_snyo2"]
 length = 1.6
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Body:frame")
+tracks/0/path = NodePath("Body:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
@@ -457,7 +442,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:frame")
+tracks/1/path = NodePath("Shadow:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = false
 tracks/1/keys = {
@@ -467,13 +452,13 @@ tracks/1/keys = {
 "values": [2, 2, 2, 2, 2, 2, 2, 2]
 }
 
-[sub_resource type="Animation" id="Animation_2hlcl"]
+[sub_resource type="Animation" id="Animation_v17mr"]
 length = 0.8
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Body:frame")
+tracks/0/path = NodePath("Body:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
@@ -485,7 +470,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:frame")
+tracks/1/path = NodePath("Shadow:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = false
 tracks/1/keys = {
@@ -495,13 +480,13 @@ tracks/1/keys = {
 "values": [3, 1, 4, 1]
 }
 
-[sub_resource type="Animation" id="Animation_q2akb"]
+[sub_resource type="Animation" id="Animation_w74r8"]
 length = 0.8
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Body:frame")
+tracks/0/path = NodePath("Body:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
@@ -513,7 +498,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:frame")
+tracks/1/path = NodePath("Shadow:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = false
 tracks/1/keys = {
@@ -523,13 +508,13 @@ tracks/1/keys = {
 "values": [1, 4, 1, 4]
 }
 
-[sub_resource type="Animation" id="Animation_he07f"]
+[sub_resource type="Animation" id="Animation_6g0ea"]
 length = 0.8
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Body:frame")
+tracks/0/path = NodePath("Body:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
@@ -541,7 +526,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:frame")
+tracks/1/path = NodePath("Shadow:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = false
 tracks/1/keys = {
@@ -551,13 +536,13 @@ tracks/1/keys = {
 "values": [5, 4, 5, 4]
 }
 
-[sub_resource type="Animation" id="Animation_btb8d"]
+[sub_resource type="Animation" id="Animation_f4n0p"]
 length = 0.8
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Body:frame")
+tracks/0/path = NodePath("Body:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
@@ -569,7 +554,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:frame")
+tracks/1/path = NodePath("Shadow:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = false
 tracks/1/keys = {
@@ -579,13 +564,13 @@ tracks/1/keys = {
 "values": [6, 2, 3, 2]
 }
 
-[sub_resource type="Animation" id="Animation_oybv8"]
+[sub_resource type="Animation" id="Animation_vor8f"]
 length = 0.8
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Body:frame")
+tracks/0/path = NodePath("Body:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
@@ -597,7 +582,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:frame")
+tracks/1/path = NodePath("Shadow:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = false
 tracks/1/keys = {
@@ -607,79 +592,52 @@ tracks/1/keys = {
 "values": [1, 2, 2, 1]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_6ldv0"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nx7rl"]
 _data = {
-"AttackDown": SubResource("Animation_3e100"),
-"AttackLeft": SubResource("Animation_3mecd"),
-"AttackRight": SubResource("Animation_8topy"),
-"AttackUp": SubResource("Animation_fsy32"),
-"DeathDown": SubResource("Animation_wu1xi"),
-"DeathLeft": SubResource("Animation_6pjoi"),
-"DeathRight": SubResource("Animation_5ltyk"),
-"DeathUp": SubResource("Animation_beagf"),
-"HurtDown": SubResource("Animation_6uime"),
-"HurtLeft": SubResource("Animation_ghha6"),
-"HurtRight": SubResource("Animation_eb74l"),
-"HurtUp": SubResource("Animation_g8fhc"),
-"IdleDown": SubResource("Animation_kvyd0"),
-"IdleLeft": SubResource("Animation_u77db"),
-"IdleRight": SubResource("Animation_157la"),
-"IdleUp": SubResource("Animation_6yj5w"),
-"RunDown": SubResource("Animation_2hlcl"),
-"RunLeft": SubResource("Animation_q2akb"),
-"RunRight": SubResource("Animation_he07f"),
-"RunUp": SubResource("Animation_btb8d"),
-"Template": SubResource("Animation_oybv8")
+"AttackDown": SubResource("Animation_tpwci"),
+"AttackLeft": SubResource("Animation_cgv80"),
+"AttackRight": SubResource("Animation_xbjyh"),
+"AttackUp": SubResource("Animation_474uf"),
+"DeathDown": SubResource("Animation_frspt"),
+"DeathLeft": SubResource("Animation_jt7x8"),
+"DeathRight": SubResource("Animation_jjrnn"),
+"DeathUp": SubResource("Animation_po2m2"),
+"HurtDown": SubResource("Animation_54wcp"),
+"HurtLeft": SubResource("Animation_yvt0k"),
+"HurtRight": SubResource("Animation_atnxd"),
+"HurtUp": SubResource("Animation_tgfah"),
+"IdleDown": SubResource("Animation_0haey"),
+"IdleLeft": SubResource("Animation_t76ov"),
+"IdleRight": SubResource("Animation_lwsne"),
+"IdleUp": SubResource("Animation_snyo2"),
+"RunDown": SubResource("Animation_v17mr"),
+"RunLeft": SubResource("Animation_w74r8"),
+"RunRight": SubResource("Animation_6g0ea"),
+"RunUp": SubResource("Animation_f4n0p"),
+"Template": SubResource("Animation_vor8f")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ywl7j"]
-radius = 5.0
+[node name="Goblin" instance=ExtResource("1_0ij6g")]
+max_health = 5
+attack_radius = 20.0
+detection_radius = 100.0
+chase_radius = 150.0
 
-[node name="Goblin" type="CharacterBody2D"]
-script = ExtResource("1_g0ebc")
-
-[node name="Shadow" type="Sprite2D" parent="."]
-texture_filter = 1
-position = Vector2(1, -6)
-rotation = -0.00292558
-scale = Vector2(2, 2)
-texture = ExtResource("2_mk65v")
-hframes = 5
-vframes = 5
-frame = 1
-metadata/_aseprite_wizard_config_ = {
-"i_mode": -1,
-"keep_anim_length": false,
-"layer": "Shadow",
-"o_ex_p": "",
-"o_folder": "res://Enemies/Sprites",
-"o_name": "GoblinShadow",
-"only_visible": false,
-"player": "AnimationPlayer",
-"slice": "",
-"source": "C:/Users/user/Desktop/Aseprite Projects/Goblin.aseprite"
-}
-metadata/_aseprite_wizard_interface_config_ = {
-"layer_section": true,
-"output_section": true
-}
-metadata/_aseprite_wizard_source_file_hash_ = "2f6022202671732799fed6fef3b44c97"
-
-[node name="Body" type="Sprite2D" parent="."]
+[node name="Body" parent="." index="0"]
 texture_filter = 1
 position = Vector2(1, -6)
 scale = Vector2(2, 2)
-texture = ExtResource("3_mvhl3")
+texture = ExtResource("2_3k47e")
 hframes = 9
 vframes = 8
-frame = 1
+frame = 30
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,
 "keep_anim_length": false,
 "layer": "Body",
 "o_ex_p": "",
-"o_folder": "res://Enemies/Sprites",
-"o_name": "GoblinBody",
+"o_folder": "",
+"o_name": "testgoblinbody",
 "only_visible": false,
 "player": "AnimationPlayer",
 "slice": "",
@@ -691,59 +649,40 @@ metadata/_aseprite_wizard_interface_config_ = {
 }
 metadata/_aseprite_wizard_source_file_hash_ = "2f6022202671732799fed6fef3b44c97"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../Shadow")
+[node name="Shadow" parent="." index="1"]
+modulate = Color(0.117647, 0.117647, 0.117647, 0.588235)
+texture_filter = 1
+position = Vector2(1, -6)
+scale = Vector2(2, 2)
+texture = ExtResource("3_507fp")
+hframes = 5
+vframes = 5
+frame = 6
+metadata/_aseprite_wizard_config_ = {
+"i_mode": -1,
+"keep_anim_length": false,
+"layer": "Shadow",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "testGoblinShadow",
+"only_visible": false,
+"player": "AnimationPlayer",
+"slice": "",
+"source": "C:/Users/user/Desktop/Aseprite Projects/Goblin.aseprite"
+}
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": true,
+"output_section": true
+}
+metadata/_aseprite_wizard_source_file_hash_ = "3ee1508620a5c8a2998a050f2b566608"
+
+[node name="AnimationPlayer" parent="." index="2"]
 libraries = {
-"": SubResource("AnimationLibrary_6ldv0")
+"": SubResource("AnimationLibrary_nx7rl")
 }
 
-[node name="PhysicsCollision" type="CollisionShape2D" parent="."]
-visible = false
-shape = SubResource("CircleShape2D_ywl7j")
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(0, -4)
 
-[node name="Hitbox" parent="." instance=ExtResource("4_co1b5")]
-position = Vector2(17, 348)
-
-[node name="AnimationComponent" parent="." instance=ExtResource("5_mlks2")]
-
-[node name="DirectionComponent" parent="." instance=ExtResource("6_bfjsa")]
-
-[node name="HealthComponent" parent="." instance=ExtResource("7_u212t")]
-
-[node name="FSM" type="Node" parent="."]
-script = ExtResource("8_lmnel")
-
-[node name="Idle" type="Node" parent="FSM"]
-script = ExtResource("9_7m4n6")
-
-[node name="Wander" type="Node" parent="FSM"]
-script = ExtResource("10_f625i")
-
-[node name="Chase" type="Node" parent="FSM"]
-script = ExtResource("11_sangc")
-
-[node name="Attack" type="Node" parent="FSM"]
-script = ExtResource("12_pdi64")
-
-[node name="Hurt" type="Node" parent="FSM"]
-script = ExtResource("13_ssy1n")
-
-[node name="Death" type="Node" parent="FSM"]
-script = ExtResource("14_t33r3")
-
-[node name="NavigationAgent" parent="." instance=ExtResource("9_fij1d")]
-
-[node name="ObstacleDetectionComponent" parent="." instance=ExtResource("10_22tk1")]
-position = Vector2(123, 261)
-
-[node name="HealthLabel" parent="." instance=ExtResource("11_fhv8i")]
-offset_left = 25.0
-offset_top = 233.0
-offset_right = 45.0
-offset_bottom = 256.0
-
-[node name="Debug" parent="." instance=ExtResource("12_j3j5x")]
-offset_left = 4.0
-offset_top = 365.0
-offset_right = 104.0
-offset_bottom = 415.0
+[node name="HealthLabel" parent="." index="11"]
+visible = true

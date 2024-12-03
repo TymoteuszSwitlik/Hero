@@ -1,0 +1,112 @@
+[gd_scene load_steps=23 format=3 uid="uid://dyvn1itkn7qf5"]
+
+[ext_resource type="Script" path="res://Enemies/Scripts/enemy.gd" id="1_7302i"]
+[ext_resource type="PackedScene" uid="uid://u6hreeseyoum" path="res://Enemies/Components/hitbox.tscn" id="2_xm26o"]
+[ext_resource type="PackedScene" uid="uid://cody4x62e8okl" path="res://Enemies/Components/animation_component.tscn" id="3_pa34g"]
+[ext_resource type="PackedScene" uid="uid://dblb3t460hydl" path="res://Enemies/Components/direction_component.tscn" id="4_yi4pt"]
+[ext_resource type="PackedScene" uid="uid://03kstpmw8jgd" path="res://Enemies/Components/health_component.tscn" id="5_t5m75"]
+[ext_resource type="Script" path="res://Enemies/Scripts/enemy_state_machine.gd" id="6_1hn7l"]
+[ext_resource type="Script" path="res://Enemies/Scripts/States/Classes_States/enemy_idle.gd" id="7_u0yy2"]
+[ext_resource type="PackedScene" uid="uid://c4o741umelbmb" path="res://Enemies/Components/navigation_agent.tscn" id="7_wekm8"]
+[ext_resource type="PackedScene" uid="uid://dec3btl1v4i4e" path="res://Enemies/Components/obstacle_detection_component.tscn" id="8_01ojb"]
+[ext_resource type="Script" path="res://Enemies/Scripts/States/Classes_States/enemy_wander.gd" id="8_qxhe7"]
+[ext_resource type="PackedScene" uid="uid://c0h66toyvm6un" path="res://Enemies/Components/health_label.tscn" id="9_gaxt3"]
+[ext_resource type="Script" path="res://Enemies/Scripts/States/Classes_States/enemy_chase.gd" id="9_tsqer"]
+[ext_resource type="Script" path="res://Enemies/Scripts/States/Classes_States/enemy_attack.gd" id="10_hnl8y"]
+[ext_resource type="Script" path="res://Enemies/Scripts/States/Classes_States/enemy_prepare.gd" id="11_a3rdn"]
+[ext_resource type="Script" path="res://Enemies/Scripts/States/Classes_States/enemy_recovery.gd" id="12_cph7l"]
+[ext_resource type="Script" path="res://Enemies/Scripts/States/Classes_States/enemy_hurt.gd" id="13_k5n8w"]
+[ext_resource type="Script" path="res://Enemies/Scripts/States/Classes_States/enemy_death.gd" id="14_f6g7v"]
+[ext_resource type="Script" path="res://Enemies/Scripts/Debug/collision_shape_detection.gd" id="18_4yvkm"]
+[ext_resource type="Script" path="res://Enemies/Scripts/Debug/collision_shape_chase.gd" id="19_ssa2v"]
+[ext_resource type="Script" path="res://Enemies/Scripts/Debug/collision_shape_attack.gd" id="20_n8i05"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6f6mu"]
+radius = 7.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_45hqk"]
+size = Vector2(14, 10)
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_7302i")
+
+[node name="Body" type="Sprite2D" parent="."]
+
+[node name="Shadow" type="Sprite2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="PhysicsCollision" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_6f6mu")
+
+[node name="Hitbox" parent="." instance=ExtResource("2_xm26o")]
+position = Vector2(0, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+visible = false
+shape = SubResource("RectangleShape2D_45hqk")
+debug_color = Color(0.838708, 0.349023, 0.43313, 0.42)
+
+[node name="AnimationComponent" parent="." instance=ExtResource("3_pa34g")]
+
+[node name="DirectionComponent" parent="." instance=ExtResource("4_yi4pt")]
+
+[node name="HealthComponent" parent="." instance=ExtResource("5_t5m75")]
+
+[node name="FSM" type="Node" parent="."]
+script = ExtResource("6_1hn7l")
+
+[node name="Idle" type="Node" parent="FSM"]
+script = ExtResource("7_u0yy2")
+
+[node name="Wander" type="Node" parent="FSM"]
+script = ExtResource("8_qxhe7")
+
+[node name="Chase" type="Node" parent="FSM"]
+script = ExtResource("9_tsqer")
+
+[node name="Attack" type="Node" parent="FSM"]
+script = ExtResource("10_hnl8y")
+
+[node name="Prepare" type="Node" parent="FSM"]
+script = ExtResource("11_a3rdn")
+
+[node name="Recovery" type="Node" parent="FSM"]
+script = ExtResource("12_cph7l")
+
+[node name="Hurt" type="Node" parent="FSM"]
+script = ExtResource("13_k5n8w")
+
+[node name="Death" type="Node" parent="FSM"]
+script = ExtResource("14_f6g7v")
+
+[node name="NavigationAgent" parent="." instance=ExtResource("7_wekm8")]
+
+[node name="ObstacleDetectionComponent" parent="." instance=ExtResource("8_01ojb")]
+
+[node name="HealthLabel" parent="." instance=ExtResource("9_gaxt3")]
+
+[node name="Debug" type="Label" parent="."]
+visible = false
+offset_left = -11.0
+offset_top = -33.0
+offset_right = 38.0
+offset_bottom = -10.0
+scale = Vector2(0.5, 0.5)
+text = "debug"
+
+[node name="DetectionRadius" type="Area2D" parent="Debug"]
+position = Vector2(22, 66)
+scale = Vector2(2, 2)
+script = ExtResource("18_4yvkm")
+
+[node name="ChaseRadius" type="Area2D" parent="Debug"]
+position = Vector2(22, 66)
+scale = Vector2(2, 2)
+script = ExtResource("19_ssa2v")
+
+[node name="AttackRadius" type="Area2D" parent="Debug"]
+position = Vector2(22, 66)
+scale = Vector2(2, 2)
+script = ExtResource("20_n8i05")

@@ -1,13 +1,13 @@
 class_name DirectionComp
 extends Node
 
-@onready var player: Player = get_tree().get_first_node_in_group("Player")
+@onready var player: Player = get_tree().get_first_node_in_group("Player")   #byc moze do zmiany przy dodaniu coopa
 @onready var enemy: Enemy = get_owner()
 
 enum Directions {LEFT, RIGHT, UP, DOWN}
 
 
-var direction_timer: Timer           ## precent rapidly changing animations
+var direction_timer: Timer           ## prevent rapidly changing animations
 var movement_direction = Vector2.ZERO
 var animation_direction = Directions.LEFT
 var gaze = Directions.LEFT
@@ -28,13 +28,14 @@ func _ready():
 
 
 func _process(delta):
-	movement_direction = player.global_position - enemy.global_position
-	movement_direction = movement_direction.normalized()	
-	velocity = enemy.velocity
+	movement_direction = enemy.global_position.direction_to(player.global_position)
+	#movement_direction = player.global_position - enemy.global_position
+	#movement_direction = movement_direction.normalized()	
 	get_lr_direction()
 	
 
 func get_lr_direction():
+	velocity = enemy.velocity
 	if can_change_direction:                            
 		var current_direction = animation_direction
 
