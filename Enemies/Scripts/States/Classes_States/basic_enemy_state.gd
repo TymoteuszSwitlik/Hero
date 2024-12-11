@@ -13,11 +13,15 @@ signal transitioned(state: EnemyState, new_state_name)
 @onready var draw: DebugDraw = owner.get_parent().find_child("DebugDraw")
 @onready var navigation: NavigationAgent = owner.find_child("NavigationAgent") 
 @onready var direction_comp: DirectionComp = owner.find_child("DirectionComponent")
+@onready var movement_comp: MovementComp = owner.find_child("MovementComponent")
 @onready var obstacle_detect: ObstacleDetectionComponent = owner.find_child("ObstacleDetectionComponent") 
+@onready var physics_collision: Area2D = owner.find_child("PhysicsCollision") 
 
 func _ready():
 	health.health_changed.connect(on_damaged)
 	health.health_depleted.connect(on_death)
+	health.parried.connect(on_parry)
+	
 	
 func enter():
 	pass
@@ -51,8 +55,19 @@ func try_chase():
 		
 	return false
 
-func on_damaged(attack):
+func on_damaged(new_health, attack):
+	pushed(attack)
 	transitioned.emit(self, "hurt")
 	
-func on_death():
+func on_death(attack):
+	pushed(attack)
 	transitioned.emit(self, "death")
+	
+func on_parry(attack):
+	#attack.push_force = attack.push_force / 2 
+	print("parried")
+	pushed(attack)
+	enemy.move
+
+func pushed(attack: Attack):
+	enemy.velocity = -(enemy.global_position.direction_to(player.global_position) * attack.push_force)

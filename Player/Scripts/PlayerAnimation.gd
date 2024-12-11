@@ -7,6 +7,7 @@ extends Node
 @onready var player : Player = get_owner()
 @onready var animation_player_hero = $"../AnimationPlayerHero"
 @onready var animation_player_sword = $"../AnimationPlayerSword"
+@onready var player_movement = $"../PlayerMovement"
 
 enum Directions {LEFT, RIGHT, UP, DOWN}
 enum State {INITIAL, IDLE, RUN, ATTACK, RECOVERY, ATTACK2, RECOVERY2, ATTACK3, DODGE}
@@ -42,18 +43,29 @@ func disable_loops():
 		
 
 
+#func get_direction():
+	#if velocity.x > 0:
+		#direction = Directions.RIGHT
+	#elif velocity.x < 0:
+		#direction = Directions.LEFT
+	#elif velocity.y < 0:
+		#direction = Directions.UP
+	#elif velocity.y > 0:
+		#direction = Directions.DOWN
+	#else:
+		#pass
+		
 func get_direction():
-	if velocity.x > 0:
+	if player_movement.direction == 1:
 		direction = Directions.RIGHT
-	elif velocity.x < 0:
+	elif player_movement.direction == 0:
 		direction = Directions.LEFT
-	elif velocity.y < 0:
+	elif player_movement.direction == 2:
 		direction = Directions.UP
-	elif velocity.y > 0:
+	elif player_movement.direction == 3:
 		direction = Directions.DOWN
 	else:
 		pass
-	print(direction)
 
 func get_input():
 	velocity = player.velocity

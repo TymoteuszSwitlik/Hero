@@ -39,22 +39,32 @@ func disable_loops():
 func play_idle():
 	if direction_component.animation_direction == 0:
 		anim.play("IdleLeft")
-	else:
+	elif direction_component.animation_direction == 1:
 		anim.play("IdleRight")
+	elif direction_component.animation_direction == 2:
+		anim.play("IdleUp")
+	else:
+		anim.play("IdleDown")
 	
 func play_run():
 	if direction_component.animation_direction == 0:
 		anim.play("RunLeft")
-	else:
+	elif direction_component.animation_direction == 1:
 		anim.play("RunRight")
-	#save_animation_position()
+	elif direction_component.animation_direction == 2:
+		anim.play("RunUp")
+	else:
+		anim.play("RunDown")
 	
-
 func play_prepare():
 	if direction_component.animation_direction == 0:
 		anim.play("PrepareLeft")
-	else:
+	elif direction_component.animation_direction == 1:
 		anim.play("PrepareRight")
+	elif direction_component.animation_direction == 2:
+		anim.play("PrepareUp")
+	else:
+		anim.play("PrepareDown")
 
 func attack_direction_unlock():
 	lock_direction = false
@@ -65,33 +75,51 @@ func play_attack():
 	if !lock_direction:
 		if direction_component.gaze == 0:
 			locked_direction = 0
-		else:
+		elif direction_component.gaze == 1:
 			locked_direction = 1
+		elif direction_component.gaze == 2:
+			locked_direction = 2
+		else:
+			locked_direction = 3
 		lock_direction = true
 	else:
 		if locked_direction == 0:
 			anim.play("AttackLeft")
-		else:
+		elif locked_direction == 1:
 			anim.play("AttackRight")
-			
-	
+		elif locked_direction == 2:
+			anim.play("AttackUp")
+		else:
+			anim.play("AttackDown")
+								
 func play_recovery():
 	if direction_component.animation_direction == 0:
 		anim.play("RecoveryLeft")
-	else:
+	elif direction_component.animation_direction == 1:
 		anim.play("RecoveryRight")
-
+	elif direction_component.animation_direction == 2:
+		anim.play("RecoveryUp")
+	else:
+		anim.play("RecoveryDown")
+		
 func play_hurt():
 	if direction_component.animation_direction == 0:
 		anim.play("HurtLeft")
-	else:
+	elif direction_component.animation_direction == 1:
 		anim.play("HurtRight")
-
+	elif direction_component.animation_direction == 2:
+		anim.play("HurtUp")
+	else:
+		anim.play("HurtDown")
 
 func play_death():
 	if direction_component.animation_direction == 0:
-		anim.play("DeathLeft")
-	else:
 		anim.play("DeathRight")
+	elif direction_component.animation_direction == 1:
+		anim.play("DeathLeft")
+	elif direction_component.animation_direction == 2:
+		anim.play("DeathDown")
+	else:
+		anim.play("DeathUp")
 		
 		

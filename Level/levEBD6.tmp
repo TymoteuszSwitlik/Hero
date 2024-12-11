@@ -1,10 +1,9 @@
-[gd_scene load_steps=12 format=4 uid="uid://c42p7fs6sx0j0"]
+[gd_scene load_steps=11 format=4 uid="uid://c42p7fs6sx0j0"]
 
 [ext_resource type="PackedScene" uid="uid://xbexpme8hk16" path="res://Player/Player.tscn" id="1_nrsy4"]
 [ext_resource type="Texture2D" uid="uid://by6ln5d3pdia0" path="res://Asets/Solaria Demo Update 01.png" id="2_sts81"]
 [ext_resource type="PackedScene" uid="uid://ckm6wvybc1bs6" path="res://Level/debug_2_player.tscn" id="4_1xyup"]
 [ext_resource type="Script" path="res://debug_draw.gd" id="4_wwu8t"]
-[ext_resource type="PackedScene" uid="uid://fsqhhd17c8bc" path="res://Enemies/Gobln_musze_ogarnac_te_pliki_i_kody/goblin.tscn" id="5_sxoja"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ousjh"]
 vertices = PackedVector2Array(8, 3, -8, 3, -8, -8, 8, -8)
@@ -447,6 +446,3 @@ script = ExtResource("4_wwu8t")
 
 [node name="Debug2Player" parent="." instance=ExtResource("4_1xyup")]
 position = Vector2(-4, 12)
-
-[node name="Goblin" parent="." instance=ExtResource("5_sxoja")]
-position = Vector2(3, -46)

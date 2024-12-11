@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dyvn1itkn7qf5"]
+[gd_scene load_steps=24 format=3 uid="uid://didctnog85tvd"]
 
 [ext_resource type="Script" path="res://Enemies/Scripts/enemy.gd" id="1_7302i"]
 [ext_resource type="PackedScene" uid="uid://u6hreeseyoum" path="res://Enemies/Components/hitbox.tscn" id="2_xm26o"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dblb3t460hydl" path="res://Enemies/Components/direction_component.tscn" id="4_yi4pt"]
 [ext_resource type="PackedScene" uid="uid://03kstpmw8jgd" path="res://Enemies/Components/health_component.tscn" id="5_t5m75"]
 [ext_resource type="Script" path="res://Enemies/Scripts/enemy_state_machine.gd" id="6_1hn7l"]
+[ext_resource type="Script" path="res://Enemies/Scripts/movement_component.gd" id="6_o6qlo"]
 [ext_resource type="Script" path="res://Enemies/Scripts/States/Classes_States/enemy_idle.gd" id="7_u0yy2"]
 [ext_resource type="PackedScene" uid="uid://c4o741umelbmb" path="res://Enemies/Components/navigation_agent.tscn" id="7_wekm8"]
 [ext_resource type="PackedScene" uid="uid://dec3btl1v4i4e" path="res://Enemies/Components/obstacle_detection_component.tscn" id="8_01ojb"]
@@ -28,6 +29,8 @@ radius = 7.0
 size = Vector2(14, 10)
 
 [node name="Enemy" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 40967
 script = ExtResource("1_7302i")
 
 [node name="Body" type="Sprite2D" parent="."]
@@ -36,7 +39,7 @@ script = ExtResource("1_7302i")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
-[node name="PhysicsCollision" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 shape = SubResource("CircleShape2D_6f6mu")
 
@@ -53,6 +56,9 @@ debug_color = Color(0.838708, 0.349023, 0.43313, 0.42)
 [node name="DirectionComponent" parent="." instance=ExtResource("4_yi4pt")]
 
 [node name="HealthComponent" parent="." instance=ExtResource("5_t5m75")]
+
+[node name="MovementComponent" type="Node" parent="."]
+script = ExtResource("6_o6qlo")
 
 [node name="FSM" type="Node" parent="."]
 script = ExtResource("6_1hn7l")
@@ -88,7 +94,6 @@ script = ExtResource("14_f6g7v")
 [node name="HealthLabel" parent="." instance=ExtResource("9_gaxt3")]
 
 [node name="Debug" type="Label" parent="."]
-visible = false
 offset_left = -11.0
 offset_top = -33.0
 offset_right = 38.0
@@ -97,16 +102,19 @@ scale = Vector2(0.5, 0.5)
 text = "debug"
 
 [node name="DetectionRadius" type="Area2D" parent="Debug"]
+visible = false
 position = Vector2(22, 66)
 scale = Vector2(2, 2)
 script = ExtResource("18_4yvkm")
 
 [node name="ChaseRadius" type="Area2D" parent="Debug"]
+visible = false
 position = Vector2(22, 66)
 scale = Vector2(2, 2)
 script = ExtResource("19_ssa2v")
 
 [node name="AttackRadius" type="Area2D" parent="Debug"]
+visible = false
 position = Vector2(22, 66)
 scale = Vector2(2, 2)
 script = ExtResource("20_n8i05")

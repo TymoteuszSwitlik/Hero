@@ -12,19 +12,12 @@ func process_state(delta):
 	anim.play_run()
 
 func physics_process_state(delta):
-	if get_distance_to_player() > enemy.chase_radius:
-		transitioned.emit(self, "wander")
-		return
-
-	if get_distance_to_player() <= enemy.attack_radius and obstacle_detect.see_player:
-		transitioned.emit(self, "prepare")
-		return	
+	try_transition()
 		
 	var last_follow_type = follow_type
 	
 	## follow player 
 	if obstacle_detect.see_player and can_follow_player:
-		print("follow player")
 		follow_type = true                  ## is following player
 		
 		navigation.exit()                   ## stop nav_agent physics process
@@ -32,7 +25,6 @@ func physics_process_state(delta):
 	
 	## follow nav_agent (path to player)
 	else:
-		print("follow nav-agent")
 		if follow_type:                     ## once after changing from follow player
 			can_follow_player = false       ## stop allowing to follow player
 		follow_type = false                 ## is following nav_agent
@@ -79,6 +71,15 @@ func follow_path():
 		navigation.set_velocity(new_velocity)
 	else:
 		_on_navigation_agent_velocity_computed(new_velocity)
+		
+func try_transition():
+	if get_distance_to_player() > enemy.chase_radius:
+		transitioned.emit(self, "wander")
+		return
+
+	if get_distance_to_player() <= enemy.attack_radius and obstacle_detect.see_player:
+		transitioned.emit(self, "prepare")
+		return	
 	
 
 func exit():

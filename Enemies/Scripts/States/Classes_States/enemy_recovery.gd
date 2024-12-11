@@ -19,9 +19,10 @@ func enter():
 	
 
 func on_timeout():
-	transitioned.emit(self, "wander")
+	transitioned.emit(self, "chase")
 	
 func exit():
+	print("koniec recovery")
 	recovery_timer.timeout.disconnect(on_timeout)
 	recovery_timer.stop()
 	recovery_timer.queue_free()

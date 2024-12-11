@@ -1,7 +1,7 @@
 class_name PlayerMovement
 extends Node
 
-@export var max_speed := 40.0
+@export var max_speed := 50.0
 @export var acceleration_time := 0.1
 @export var animation_player_hero : AnimationPlayer
 
@@ -104,6 +104,8 @@ func get_animation(delta):
 	
 	if current_animation.begins_with("Attack"):
 		velocity = Vector2(0, 0)
+		is_direction_locked = true
+
 	## zablokowałem dodawanie predkosci w trakcie atakowania
 		#if current_animation.contains("3"):
 			#if not is_attacking:

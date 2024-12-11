@@ -26,14 +26,14 @@ func _physics_process(delta):
 		
 		
 func enter():
-	self.debug_enabled = true     ## debug
+	#self.debug_enabled = true     ## debug
 	if !physics_is_going:
 		physics_is_going = true
 		set_physics_process(true)
 	avoidance_enabled = true
 		
 func exit():
-	self.debug_enabled = false    ## debug
+	#self.debug_enabled = false    ## debug
 	if physics_is_going:
 		physics_is_going = false
 		set_physics_process(false)

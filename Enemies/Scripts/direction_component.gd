@@ -13,6 +13,7 @@ var animation_direction = Directions.LEFT
 var gaze = Directions.LEFT
 var velocity = Vector2.ZERO
 var can_change_direction = true      ## prevent rapidly changing animations
+var is_player_in_front = true        ## checking if can_take_damage in health
 
 func _ready():
 	randomize()
@@ -31,37 +32,17 @@ func _process(delta):
 	movement_direction = enemy.global_position.direction_to(player.global_position)
 	#movement_direction = player.global_position - enemy.global_position
 	#movement_direction = movement_direction.normalized()	
-	get_lr_direction()
-	
+	get_direction()
+	player_in_front()
 
-func get_lr_direction():
-	velocity = enemy.velocity
-	if can_change_direction:                            
-		var current_direction = animation_direction
+func get_direction():
+	pass
 
-		## Determine animation direction based on horizontal velocity
-		if velocity.x > 0:
-			animation_direction = Directions.RIGHT
-		elif velocity.x < 0:
-			animation_direction = Directions.LEFT
-		else:
-			pass
-			
-		if current_direction != animation_direction:    ## if direction changed 
-			can_change_direction = false                ## block changing direction 
-			direction_timer.start()                     ## for 0.5 s 
-			
-
-	
-	## Determine gaze direction based on player position
-	if player:
-		if player.global_position.x > enemy.global_position.x:
-			gaze = Directions.RIGHT
-		else:
-			gaze = Directions.LEFT	
-			
 func on_timeout():
 	can_change_direction = true
+	
+func player_in_front():
+	pass
 			
 	
 	## this make some crazy teleporting stuff with enemies

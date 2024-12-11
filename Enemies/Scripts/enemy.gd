@@ -6,7 +6,7 @@ extends CharacterBody2D
 @export var wander_speed = 10.0       ## how fast is moving
 @export var chase_speed = 20.0        ## how fast is chasing player
 @export var attack_speed = 100.0      ## how fast is moving while attacking
-@export var max_health = 3            ## how much hp have
+@export var max_health = 3            ## how much hp have (goblin 2)                
 @export var pushed_force = 100        ## how much is being pushed
 #@export var attack_power = 1         ## how much damage is dealing
 
@@ -16,8 +16,13 @@ extends CharacterBody2D
 @export var detection_radius = 20.0  ## how far sees player                   70
 @export var chase_radius = 30.0      ## how far is chasing player            100
 
+@export var four_directional = true
+
 var alive: = true
 
+
+func _ready():
+	pass #debug
 
 #func on_damaged(attack: Attack) -> void:
 	#damaged.emit(attack)	

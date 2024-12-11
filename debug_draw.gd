@@ -24,6 +24,7 @@ func _ready():
 	#print(enemies[3])
 
 func _process(delta):
+	
 	pla = player.global_position
 	var cnt =1
 	

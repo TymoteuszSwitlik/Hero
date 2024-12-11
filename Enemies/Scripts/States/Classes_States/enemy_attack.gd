@@ -4,7 +4,6 @@ extends EnemyState
 var current_player_position = Vector2.ZERO
 var attack_prepare_timer: Timer
 var attack_action_timer: Timer
-var cnt = 0
 var attack_speed = null
 
 
@@ -15,7 +14,7 @@ func physics_process_state(delta):
 	enemy.move_and_slide()
 
 func enter():
-
+	enemy.velocity = Vector2.ZERO
 
 	anim.attack_direction_unlock() # zeruje warunki pobierania kierunku w celu zablokowania kierunku animacji 
 	attack_speed = enemy.attack_speed
@@ -35,7 +34,7 @@ func enter():
 func on_prepare_timeout():
 	attack_action_timer = Timer.new()
 	attack_action_timer.one_shot = true
-	attack_action_timer.wait_time = 0.5
+	attack_action_timer.wait_time = 0.7
 	attack_action_timer.timeout.connect(on_action_timeout)
 	attack_action_timer.autostart = true
 	add_child(attack_action_timer)

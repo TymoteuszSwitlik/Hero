@@ -11,6 +11,9 @@ func physics_process_state(delta):
 	enemy.move_and_slide()
 	
 func enter():
+	enemy.collision_layer =  0b1000
+	enemy.collision_mask =  0b0001
+	print("collisionmask: ", enemy.collision_mask)
 	anim.play_death()
 	#enemy.alive = false
 	
@@ -28,13 +31,13 @@ func enter():
 	pushed_timer.timeout.connect(on_pushed_timer_finished)
 	add_child(pushed_timer)
 
-	pushed()
+	#pushed()                # to też
 
 
-func pushed():
-	pushed_force = enemy.pushed_force
-	current_player_position = player.global_position
-	enemy.velocity = -(current_player_position - enemy.global_position).normalized() * pushed_force
+#func pushed():               #do usuniecia
+	#pushed_force = enemy.pushed_force
+	#current_player_position = player.global_position
+	#enemy.velocity = -(current_player_position - enemy.global_position).normalized() * pushed_force
 
 
 func on_timer_finished():
