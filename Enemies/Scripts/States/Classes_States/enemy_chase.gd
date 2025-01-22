@@ -8,38 +8,17 @@ var rand_chase_direction = 0.0
 var can_follow_player = true        ## allow to follow player
 var follow_type = true              ## is following player, or is following nav_agent
 
+
 func process_state(delta):
 	anim.play_run()
 
 func physics_process_state(delta):
+	get_velocity()
 	try_transition()
 		
-	var last_follow_type = follow_type
-	
-	## follow player 
-	if obstacle_detect.see_player and can_follow_player:
-		follow_type = true                  ## is following player
-		
-		navigation.exit()                   ## stop nav_agent physics process
-		enemy.velocity = direction_comp.movement_direction.rotated(rand_chase_direction) * enemy.chase_speed
-	
-	## follow nav_agent (path to player)
-	else:
-		if follow_type:                     ## once after changing from follow player
-			can_follow_player = false       ## stop allowing to follow player
-		follow_type = false                 ## is following nav_agent
-		
-		navigation.enter()                  ## start nav_agent physics process
-		call_deferred("follow_path")
-	
-	if last_follow_type != follow_type and !follow_type:   ## once after changing from follow player to follow nav_agent
-		follow_path_timer.start()	                       ## start timer so after 1s again allow to follow player
-	
-	enemy.move_and_slide()
-	
-	
 	 
 func enter():
+	rand_chase_direction = deg_to_rad(randf_range(-45, 45))
 	navigation.velocity_computed.connect(_on_navigation_agent_velocity_computed)
 	
 	rand_direction_timer = Timer.new()
@@ -56,6 +35,31 @@ func enter():
 	follow_path_timer.autostart = false
 	add_child(follow_path_timer)
 	
+
+func get_velocity():	
+	var last_follow_type = follow_type
+	
+	## follow player 
+	if obstacle_detect.see_player and can_follow_player:
+		follow_type = true                  ## is following player
+		
+		navigation.exit()                   ## stop nav_agent physics process
+		#enemy.velocity = direction_comp.movement_direction.rotated(rand_chase_direction) * enemy.chase_speed  ##do usuniecia
+		movement_comp.state_velocity = direction_comp.movement_direction.rotated(rand_chase_direction) * enemy.chase_speed
+	
+	
+	## follow nav_agent (path to player)
+	else:
+		if follow_type:                     ## once after changing from follow player
+			can_follow_player = false       ## stop allowing to follow player
+		follow_type = false                 ## is following nav_agent
+		
+		navigation.enter()                  ## start nav_agent physics process
+		call_deferred("follow_path")
+	
+	if last_follow_type != follow_type and !follow_type:   ## once after changing from follow player to follow nav_agent
+		follow_path_timer.start()	                       ## start timer so after 1s again allow to follow player
+		
 	
 func on_rand_direction_timeout():
 	rand_chase_direction = deg_to_rad(randf_range(-45, 45))
@@ -99,4 +103,4 @@ func exit():
 
 
 func _on_navigation_agent_velocity_computed(safe_velocity):
-	enemy.velocity = safe_velocity      ## change enemy velocity to avoid another nav_agents
+	movement_comp.state_velocity = safe_velocity  ## change enemy velocity to avoid another nav_agents

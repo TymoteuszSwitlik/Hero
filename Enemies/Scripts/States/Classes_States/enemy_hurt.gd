@@ -12,8 +12,8 @@ func process_state(delta):
 	anim.play_hurt()
 	
 	
-func physics_process_state(delta):
-	enemy.move_and_slide()
+#func physics_process_state(delta):   ## do usuniecia
+	#enemy.move_and_slide()
 	
 	
 func enter():
@@ -44,7 +44,9 @@ func on_timer_finished():
 	transitioned.emit(self, "wander")
 
 func on_pushed_timer_finished():
-	enemy.velocity = Vector2.ZERO
+	#enemy.velocity = Vector2.ZERO        ## do usuniecia
+	movement_comp.state_velocity = Vector2.ZERO
+
 
 
 

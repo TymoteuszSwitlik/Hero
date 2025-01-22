@@ -483,5 +483,8 @@ libraries = {
 [node name="DirectionComponent" parent="." index="6"]
 script = ExtResource("5_v61p3")
 
-[node name="HealthLabel" parent="." index="11"]
+[node name="HealthLabel" parent="." index="12"]
 visible = true
+
+[node name="Debug" parent="." index="13"]
+visible = false

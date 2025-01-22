@@ -1,10 +1,10 @@
-[gd_scene load_steps=35 format=3 uid="uid://fsqhhd17c8bc"]
+[gd_scene load_steps=39 format=3 uid="uid://fsqhhd17c8bc"]
 
 [ext_resource type="PackedScene" uid="uid://didctnog85tvd" path="res://Enemies/enemy.tscn" id="1_0ij6g"]
 [ext_resource type="Texture2D" uid="uid://b0roq3fxb22lp" path="res://Enemies/Gobln_musze_ogarnac_te_pliki_i_kody/testgoblinbodyBody.png" id="2_3k47e"]
 [ext_resource type="Texture2D" uid="uid://cjrr417swpqbv" path="res://Enemies/Gobln_musze_ogarnac_te_pliki_i_kody/testGoblinShadowShadow.png" id="3_507fp"]
 [ext_resource type="Script" path="res://Enemies/Scripts/direction_wsad_component.gd" id="4_7g0p7"]
-[ext_resource type="Script" path="res://Enemies/Scripts/States/Goblin_States/goblin_chase.gd" id="5_nc70i"]
+[ext_resource type="Script" path="res://Enemies/Scripts/States/Goblin_States/goblin_chase.gd" id="5_ltsei"]
 [ext_resource type="Script" path="res://Enemies/Scripts/States/Goblin_States/goblin_attack.gd" id="6_a074g"]
 [ext_resource type="Script" path="res://Enemies/Scripts/States/Goblin_States/goblin_prepare.gd" id="7_j3wrg"]
 [ext_resource type="Script" path="res://Enemies/Scripts/States/Goblin_States/goblin_recovery.gd" id="8_pno4y"]
@@ -569,6 +569,118 @@ tracks/1/keys = {
 "values": [1]
 }
 
+[sub_resource type="Animation" id="Animation_yxfyd"]
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 7, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Shadow:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 0, 0]
+}
+
+[sub_resource type="Animation" id="Animation_bwv3t"]
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [26, 18, 26]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Shadow:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 0, 0]
+}
+
+[sub_resource type="Animation" id="Animation_m4u6p"]
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [1, 11, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Shadow:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [1, 1, 1]
+}
+
+[sub_resource type="Animation" id="Animation_8n2qp"]
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [2, 2, 2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Shadow:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [1, 1, 1]
+}
+
 [sub_resource type="Animation" id="Animation_v17mr"]
 length = 0.8
 loop_mode = 1
@@ -731,6 +843,10 @@ _data = {
 "PrepareLeft": SubResource("Animation_mlvy3"),
 "PrepareRight": SubResource("Animation_pd6gb"),
 "PrepareUp": SubResource("Animation_cj3b8"),
+"RecoveryDown": SubResource("Animation_yxfyd"),
+"RecoveryLeft": SubResource("Animation_bwv3t"),
+"RecoveryRight": SubResource("Animation_m4u6p"),
+"RecoveryUp": SubResource("Animation_8n2qp"),
 "RunDown": SubResource("Animation_v17mr"),
 "RunLeft": SubResource("Animation_w74r8"),
 "RunRight": SubResource("Animation_6g0ea"),
@@ -739,9 +855,9 @@ _data = {
 }
 
 [node name="Goblin" instance=ExtResource("1_0ij6g")]
-chase_speed = 25.0
+chase_speed = 30.0
 attack_speed = 40.0
-max_health = 10
+max_health = 5
 attack_radius = 20.0
 detection_radius = 100.0
 chase_radius = 150.0
@@ -770,7 +886,7 @@ metadata/_aseprite_wizard_interface_config_ = {
 "layer_section": true,
 "output_section": true
 }
-metadata/_aseprite_wizard_source_file_hash_ = "028313091793ac62d9a20b7590e4dabc"
+metadata/_aseprite_wizard_source_file_hash_ = "f05334b98ec53ddb565b612691fcacf5"
 
 [node name="Shadow" parent="." index="1"]
 modulate = Color(0.117647, 0.117647, 0.117647, 0.588235)
@@ -797,7 +913,7 @@ metadata/_aseprite_wizard_interface_config_ = {
 "layer_section": true,
 "output_section": true
 }
-metadata/_aseprite_wizard_source_file_hash_ = "028313091793ac62d9a20b7590e4dabc"
+metadata/_aseprite_wizard_source_file_hash_ = "f05334b98ec53ddb565b612691fcacf5"
 
 [node name="AnimationPlayer" parent="." index="2"]
 libraries = {
@@ -811,7 +927,7 @@ position = Vector2(0, -4)
 script = ExtResource("4_7g0p7")
 
 [node name="Chase" parent="FSM" index="2"]
-script = ExtResource("5_nc70i")
+script = ExtResource("5_ltsei")
 
 [node name="Attack" parent="FSM" index="3"]
 script = ExtResource("6_a074g")
@@ -821,6 +937,3 @@ script = ExtResource("7_j3wrg")
 
 [node name="Recovery" parent="FSM" index="5"]
 script = ExtResource("8_pno4y")
-
-[node name="HealthLabel" parent="." index="11"]
-visible = true

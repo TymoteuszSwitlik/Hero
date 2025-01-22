@@ -7,8 +7,8 @@ var current_player_position = Vector2.ZERO
 var pushed_force = null
 
 
-func physics_process_state(delta):
-	enemy.move_and_slide()
+#func physics_process_state(delta):       ## do usuniecia
+	#enemy.move_and_slide()
 	
 func enter():
 	enemy.collision_layer =  0b1000

@@ -2,6 +2,7 @@ class_name DirectionComp
 extends Node
 
 @onready var player: Player = get_tree().get_first_node_in_group("Player")   #byc moze do zmiany przy dodaniu coopa
+@onready var health: HealthComp = owner.find_child("HealthComponent")
 @onready var enemy: Enemy = get_owner()
 
 enum Directions {LEFT, RIGHT, UP, DOWN}

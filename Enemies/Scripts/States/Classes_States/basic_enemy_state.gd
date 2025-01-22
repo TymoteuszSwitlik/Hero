@@ -20,7 +20,6 @@ signal transitioned(state: EnemyState, new_state_name)
 func _ready():
 	health.health_changed.connect(on_damaged)
 	health.health_depleted.connect(on_death)
-	health.parried.connect(on_parry)
 	
 	
 func enter():
@@ -44,6 +43,10 @@ func exit():
 # Non FSM-specific methods 
 ###########################################
 
+func try_go_around():
+	pass
+
+
 func get_distance_to_player():
 	return player.global_position.distance_to(enemy.global_position)
 	
@@ -55,19 +58,13 @@ func try_chase():
 		
 	return false
 
+
 func on_damaged(new_health, attack):
-	pushed(attack)
 	transitioned.emit(self, "hurt")
+
 	
 func on_death(attack):
-	pushed(attack)
 	transitioned.emit(self, "death")
 	
-func on_parry(attack):
-	#attack.push_force = attack.push_force / 2 
-	print("parried")
-	pushed(attack)
-	enemy.move
 
-func pushed(attack: Attack):
-	enemy.velocity = -(enemy.global_position.direction_to(player.global_position) * attack.push_force)
+	

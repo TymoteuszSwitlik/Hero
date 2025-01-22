@@ -1,6 +1,10 @@
 extends DirectionComp
 
 
+func _ready():
+	super()
+	health.parried.connect(on_parried)
+
 func get_direction():
 	#velocity = enemy.enemy.velocity
 	
@@ -44,3 +48,9 @@ func player_in_front():
 		is_player_in_front = true
 	else:
 		is_player_in_front = false
+
+
+func on_parried(attack: Attack):
+	can_change_direction = false
+	direction_timer.start()                     ## for 0.5 s this timer is set same as parry_pimer in movement_comp
+												## maybe it would be better to connect it to end_parry from movement_comp  

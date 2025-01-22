@@ -7,6 +7,10 @@
 radius = 4.12311
 
 [node name="Debug2Player" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 7
+motion_mode = 1
+platform_floor_layers = 4294901760
 script = ExtResource("1_jnd0i")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

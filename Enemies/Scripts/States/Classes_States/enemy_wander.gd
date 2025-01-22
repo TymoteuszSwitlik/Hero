@@ -20,8 +20,9 @@ func physics_process_state(delta: float):
 	#enemy.velocity = wander_speed * wander_direction
 	
 	## option 2
-	enemy.velocity = wander_speed * wander_direction
-	enemy.move_and_slide()
+	#enemy.velocity = wander_speed * wander_direction   ##do usuniecia
+	movement_comp.state_velocity = wander_speed * wander_direction
+	#enemy.move_and_slide()  ##do usuniecia
 	
 	try_chase()
 

@@ -10,11 +10,12 @@ var attack_speed = null
 func process_state(delta):
 	anim.play_attack()
 	
-func physics_process_state(delta):
-	enemy.move_and_slide()
+#func physics_process_state(delta):
+	#enemy.move_and_slide()   do usuniecia
 
 func enter():
-	enemy.velocity = Vector2.ZERO
+	#enemy.velocity = Vector2.ZERO   ## do usuniecia
+	movement_comp.state_velocity = Vector2.ZERO
 
 	anim.attack_direction_unlock() # zeruje warunki pobierania kierunku w celu zablokowania kierunku animacji 
 	attack_speed = enemy.attack_speed
@@ -39,10 +40,13 @@ func on_prepare_timeout():
 	attack_action_timer.autostart = true
 	add_child(attack_action_timer)
 	
-	enemy.velocity = (current_player_position - enemy.global_position).normalized() * attack_speed
+	#enemy.velocity = (current_player_position - enemy.global_position).normalized() * attack_speed ## do usuniecia
+	movement_comp.state_velocity = (current_player_position - enemy.global_position).normalized() * attack_speed
 	
 func on_action_timeout():
-	enemy.velocity = Vector2.ZERO
+	#enemy.velocity = Vector2.ZERO  ##do usuniecia
+	movement_comp.state_velocity = Vector2.ZERO
+	
 	transitioned.emit(self, "recovery")
 
 func exit():

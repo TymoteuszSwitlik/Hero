@@ -16,7 +16,8 @@ func physics_process_state(delta):
 	
 func enter():
 	randomize()
-	enemy.velocity = Vector2.ZERO
+	#enemy.velocity = Vector2.ZERO #do usuniecia
+	movement_comp.state_velocity = Vector2.ZERO
 	
 	idle_timer = Timer.new()
 	idle_timer.one_shot = true

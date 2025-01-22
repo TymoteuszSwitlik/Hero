@@ -440,13 +440,13 @@ tile_set = SubResource("TileSet_3iuja")
 collision_visibility_mode = 2
 
 [node name="Player" parent="." instance=ExtResource("1_nrsy4")]
-position = Vector2(-153, -26)
+position = Vector2(-158, -58)
 
 [node name="DebugDraw" type="Node2D" parent="."]
 script = ExtResource("4_wwu8t")
 
 [node name="Debug2Player" parent="." instance=ExtResource("4_1xyup")]
-position = Vector2(-4, 12)
+position = Vector2(208, 126)
 
 [node name="Goblin" parent="." instance=ExtResource("5_sxoja")]
-position = Vector2(3, -46)
+position = Vector2(2, -33)

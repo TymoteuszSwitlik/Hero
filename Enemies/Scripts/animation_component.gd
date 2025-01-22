@@ -2,7 +2,7 @@ class_name AnimationComp
 extends Node
 
 @onready var direction_component: DirectionComp = owner.find_child("DirectionComponent")
-#@onready var anim: AnimationPlayer = owner.find_child("AnimationPlayer")
+@onready var health: HealthComp = owner.find_child("HealthComponent")
 @onready var anim = $"../AnimationPlayer"
 
 var direction ## chyba int
@@ -11,6 +11,8 @@ var lock_direction = false
 var locked_direction = null
 
 func _ready():
+	health.parried.connect(on_parried)
+	
 	direction = direction_component.animation_direction
 	gaze_direction = direction_component.gaze
 	disable_loops()
@@ -123,3 +125,5 @@ func play_death():
 		anim.play("DeathUp")
 		
 		
+func on_parried():
+	pass

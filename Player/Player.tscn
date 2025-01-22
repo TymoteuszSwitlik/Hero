@@ -1,4 +1,4 @@
-[gd_scene load_steps=114 format=3 uid="uid://xbexpme8hk16"]
+[gd_scene load_steps=115 format=3 uid="uid://xbexpme8hk16"]
 
 [ext_resource type="Script" path="res://Player/Scripts/player.gd" id="1_hpxk8"]
 [ext_resource type="Texture2D" uid="uid://8tbjl656siff" path="res://Player/Shadow.png" id="3_d1w3x"]
@@ -1469,7 +1469,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0.5, 8)]
+"values": [Vector2(0, 6)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -1565,7 +1565,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-8, 1)]
+"values": [Vector2(-7.5, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -1711,7 +1711,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(9, 1)]
+"values": [Vector2(7.5, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -1857,7 +1857,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0.5, -1)]
+"values": [Vector2(0, -2)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -2552,9 +2552,13 @@ _data = {
 "Template": SubResource("Animation_pyn0m")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_5wv5a"]
+radius = 50.0
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 2
 collision_mask = 7
+motion_mode = 1
 platform_floor_layers = 4294901760
 script = ExtResource("1_hpxk8")
 
@@ -2590,7 +2594,7 @@ scale = Vector2(2, 2)
 texture = ExtResource("4_1n83b")
 hframes = 10
 vframes = 10
-frame = 19
+frame = 21
 script = ExtResource("4_hs23k")
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,
@@ -2611,6 +2615,7 @@ metadata/_aseprite_wizard_interface_config_ = {
 metadata/_aseprite_wizard_source_file_hash_ = "6b9434ac7e6f0ffed5ce181cd9250f38"
 
 [node name="SwordHurtbox" type="Area2D" parent="Sword"]
+position = Vector2(0.5, 2)
 collision_layer = 2
 collision_mask = 4
 script = ExtResource("4_jngq2")
@@ -2663,6 +2668,7 @@ shape = SubResource("RectangleShape2D_nwi5u")
 debug_color = Color(0.838708, 0.349023, 0.43313, 0.42)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, -1)
 rotation = 1.5708
 shape = SubResource("CircleShape2D_7jls3")
@@ -2686,8 +2692,16 @@ libraries = {
 }
 
 [node name="Debug" type="Label" parent="."]
+offset_top = -3.0
 offset_right = 40.0
-offset_bottom = 23.0
+offset_bottom = 20.0
+
+[node name="DEBUG DO USUNICIA" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DEBUG DO USUNICIA"]
+shape = SubResource("CircleShape2D_5wv5a")
+disabled = true
 
 [connection signal="area_entered" from="Sword/SwordHurtbox" to="Sword/SwordHurtbox" method="_on_area_entered"]
 [connection signal="animation_finished" from="AnimationPlayerSword" to="PlayerMovement" method="_on_animation_player_sword_animation_finished"]
